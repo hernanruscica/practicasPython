@@ -75,6 +75,26 @@ print(True < False)
 #"""Python"""
 print('"Estoy"\n""aprendiendo""\n"""Python"""\n')
 
+#Funciones y algunas maneras de contener los resultados de los condicionales
+TEMPERATURA_MAXIMA = 37
+nombre = input("Ingrese su nombre:   ")
+temperatura = input("Ingrese su temperatura:   ")
+temperatura = float(temperatura)
+
+def puedeIngresar (temperatura):    
+    tieneFiebre = temperatura > TEMPERATURA_MAXIMA
+    return tieneFiebre == False
+
+estadoIngreso = puedeIngresar(temperatura)
+
+if (estadoIngreso == True):
+    mensajeIngreso = "Usted puede ingresar"
+else:
+    mensajeIngreso = "Usted No puede ingresar"
+
+print(mensajeIngreso)
+
+
 
 
 
