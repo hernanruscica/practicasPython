@@ -83,11 +83,11 @@ temperatura = float(temperatura)
 
 def puedeIngresar (temperatura):    
     tieneFiebre = temperatura > TEMPERATURA_MAXIMA
-    return tieneFiebre == False
+    return not tieneFiebre
 
 estadoIngreso = puedeIngresar(temperatura)
 
-if (estadoIngreso == True):
+if (estadoIngreso):
     mensajeIngreso = "Usted puede ingresar"
 else:
     mensajeIngreso = "Usted No puede ingresar"
