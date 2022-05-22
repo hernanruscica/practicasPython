@@ -125,4 +125,65 @@ print((5 * ((25 % 13) + 100) / (2 * 13)) // 2)
 # 21.53846153846154 // 2
 # 10.0
 
+#variables en python, convencion para los nombres mi_variable aunque tambien es aceptado miVariable
+palabras_claves_python = ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+print (palabras_claves_python)
+print("En python no es necesario declarar el tipo de dato, solo basta con asignarle un valor, y el tipo de dato de ese valor, sera el de la variable\n")
+print("Por ejemplo:\nLa variable 'entero' no existe, con la sentencia 'entero = 1' ya la declaro con el valor y el tipo de valor.\n")
+entero = 1
+print("lo comprobamos usando la funcion 'type()', que nos dice que tipo de dato contiene 'entero'\nentero = " + str(entero) + " y es del tipo " + str(type(entero)))
+
+#funcion para sacar la hipotenusa
+
+def sacarHipotenusa(a, b):
+    ladoA = a
+    laboB = b
+    hipotenusa = (ladoA ** 2 + laboB ** 2) ** 0.5
+    return hipotenusa
+
+def pedirCatetosYmostrarHipotenusa():
+    catetoA = float(input("Ingrese el primer cateto>> "))
+    catetoB = float(input("Ingrese el primer cateto>> "))    
+    hipotenusaCalculado = sacarHipotenusa(catetoA, catetoB)
+    print("Cateto 'A' = " + str(catetoA) + "\nCateto 'B' = " + str(catetoB) + "\nHipotenusa = " + str(hipotenusaCalculado))
+
+pedirCatetosYmostrarHipotenusa()
+
+"""
+2.4.1.7 LABORATORIO: Variables
+https://edube.org/learn/python-essentials-1-esp/laboratorio-variables-1
+"""
+juan = 3
+maria = 5
+adam = 6
+print(str(juan) + "," + str(maria) + "," + str(adam))
+total_manzanas = juan + maria + adam
+print("numero total de manzanas = " + str(total_manzanas))
+
+"""
+2.4.1.9 LABORATORIO: Variables, un sencillo convertidor
+https://edube.org/learn/python-essentials-1-esp/laboratorio-variables-un-sencillo-convertidor-1
+"""
+kilometers = 12.25
+miles = 7.38
+
+miles_to_kilometers = miles * 1.61
+kilometers_to_miles = kilometers / 1.61
+
+print(miles, "millas son", round(miles_to_kilometers, 2), "kilómetros")
+print(kilometers, "kilómetros son", round(kilometers_to_miles, 2), "millas")
+
+"""
+2.4.1.10 LABORATORIO: Operadores y expresiones
+https://edube.org/learn/python-essentials-1-esp/laboratorio-operadores-y-expresiones-3
+"""
+# programa que resuelva y = 3x3 - 2x2 + 3x - 1
+x =  -1
+x = float(x)
+equis_cubo = 3 * (x ** 3)
+equis_cuadrado =  -2 * (x ** 2) 
+equis = 3 * x
+independiente = -1
+y = equis_cubo + equis_cuadrado + equis + independiente
+print("y =", y)
 
