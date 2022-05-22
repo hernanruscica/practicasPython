@@ -95,6 +95,34 @@ else:
 print(mensajeIngreso)
 
 
+#operadores aritmeticos
 
+#potenciacion con el doble asterisco **
+print(2 ** 3)
+
+#division entera
+print(6 // 4)
+
+#modulo o resto de una division 
+print (12 % 3)
+
+#jerarquia de los operadores - el * tiene prioridad ante el + como en matematica
+print(2 + 3 * 5)
+
+#Enlazado de operadores 
+#El operador tiene un enlazado del lado izquierdo.
+#Las divisiones siempre devuelven flotantes
+print(12 / 4 / 3)
+
+#la exponenciacion tiene un enlazado de derecha a izquierda
+print(2 ** 2 ** 3)
+#2 al cubo = 8 y 2 a la 8 = 256
+
+#operaciones con parentesis
+print((5 * ((25 % 13) + 100) / (2 * 13)) // 2)
+# (5 * (12 + 100) / (26)) // 2
+# (5 * 112 / 26) // 2
+# 21.53846153846154 // 2
+# 10.0
 
 
