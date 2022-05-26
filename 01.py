@@ -187,3 +187,35 @@ independiente = -1
 y = equis_cubo + equis_cuadrado + equis + independiente
 print("y =", y)
 
+# 2.6.1.7 Cómo hablar con una computadora: operadores de cadenas
+# con el asterisco podemos multiplicar las cadenas..
+
+print('*-' * 20, end = '*\n')
+print(('*' + ' ' * 39 + '*\n') * 10)
+print('*-' * 20, end = '*\n')
+
+
+#2.6.1.9 LABORATORIO: Entradas y salidas simples
+#https://edube.org/learn/python-essentials-1-esp/laboratorio-entradas-y-salidas-simples-1
+
+# ingresa un valor flotante para la variable a aquí
+valor01 = float(input('Ingrese 1er valor flotante : '))
+# ingresa un valor flotante para la variable b aquí
+valor02 = float(input('Ingrese 2er valor flotante : '))
+# muestra el resultado de la suma aquí 
+print(str(valor01) + ' + ' + str(valor02) + ' = ' + str(valor01 + valor02))
+# muestra el resultado de la resta aquí
+print(str(valor01) + ' - ' + str(valor02) + ' = ' + str(valor01 - valor02))
+# muestra el resultado de la multiplicación aquí
+print(str(valor01) + ' * ' + str(valor02) + ' = ' + str(valor01 * valor02))
+# muestra el resultado de la división aquí
+print(str(valor01) + ' / ' + str(valor02) + ' = ' + str(valor01 / valor02))
+print("\n¡Eso es todo, amigos!")
+
+#2.6.1.10 LABORATORIO: Operadores y expresiones
+#https://edube.org/learn/python-essentials-1-esp/laboratorio-operadores-y-expresiones-4
+x = float(input("Ingresa el valor para x: "))
+# Escribe tu código aquí.
+y = 1 / (x + (1 / (x + (1 / (x + (1 / x))))))
+print("y =", y)
+
