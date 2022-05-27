@@ -219,3 +219,66 @@ x = float(input("Ingresa el valor para x: "))
 y = 1 / (x + (1 / (x + (1 / (x + (1 / x))))))
 print("y =", y)
 
+
+#2.6.1.11 LABORATORIO: Operadores y expresiones
+#https://edube.org/learn/python-essentials-1-esp/laboratorio-operadores-y-expresiones-5
+horas = int(input("Hora de inicio (horas): "))
+minutos = int(input("Minuto de inicio (minutos): "))
+duracion = int(input("Duración del evento (minutos): "))
+
+# Escribe tu código aqui.
+#Por ejemplo, si el evento comienza a las 12:17 y dura 59 minutos, terminará a las 13:16.
+#datos de prueba
+#horas = 23; minutos = 58; duracion = 642
+horasDia = 24
+minutosHora = 60
+
+minutos += duracion
+horasQueMePase = minutos // minutosHora
+minutos = minutos % minutosHora
+
+horas += horasQueMePase
+horas = horas % horasDia
+
+print('El evento termina a las ' + str(horas) + ' : ' +str(minutos))
+
+print(4 % 11)
+
+x=11
+y=4
+
+x = x % y
+x = x % y
+y = y % x
+
+print(y)
+
+x=1
+y=2
+z = x 
+x = y
+y = z
+print(x, y)
+
+x = 1 / 2 + 3 // 3 + 4 ** 2
+print(x)
+
+x = 2
+y = 4
+x = x / y
+y = y / x
+print(y)
+
+z = y = x = 1
+print(x, y, z, sep = "*")
+
+y = 2 + 3 * 5
+print(Y)
+
+print(12%0)
+
+x = 2
+y = 4
+x = x // y
+y = y // x
+print(y)
