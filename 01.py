@@ -282,3 +282,8 @@ y = 4
 x = x // y
 y = y // x
 print(y)
+
+#3.1.1.4 LABORATORIO: Preguntas y respuestas
+n = int(input("Ingrese el valor de la variable 'n' : "))
+print(n >= 100)
+
