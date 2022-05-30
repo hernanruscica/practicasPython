@@ -283,7 +283,36 @@ x = x // y
 y = y // x
 print(y)
 
-#3.1.1.4 LABORATORIO: Preguntas y respuestas
-n = int(input("Ingrese el valor de la variable 'n' : "))
-print(n >= 100)
 
+#3.1.1.9 Tomando decisiones en Python
+# Se leen tres números.
+
+#print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+numero01 = input('Ingrese el primer numero: ')
+numero02 = input('Ingrese el segundo numero: ')
+numero03 = input('Ingrese el tercer numero: ')
+
+largest_number = max(numero01, numero02, numero03)
+# Imprime el resultado.
+print("El número más grande es:", largest_number)
+
+
+#3.1.1.10 LABORATORIO: Operadores de comparación y ejecución condicional
+cadena = input("Ingrese cadena: ")
+if cadena == 'ESPATIFILIO':
+    print("Si, ¡El ESPATIFILIO! es la mejor planta de todos los tiempos!")
+elif cadena == 'espatifilo':
+    print("No, ¡quiero un gran ESPATIFILIO!")
+else:
+    print("¡ESPATIFILIO!, ¡No " + cadena + "!")
+
+
+#3.1.1.11 LABORATORIO: Fundamentos de la sentencia if-else
+ingreso = float(input("Introduce el ingreso anual:"))
+ingreso_limite = 85528
+if (ingreso <= ingreso_limite):
+    impuesto_a_pagar = (ingreso * 0.18) - 556.02
+else:
+    impuesto_a_pagar = 14839.02 + 0.32 * (ingreso - ingreso_limite)
+impuesto_a_pagar = round(impuesto_a_pagar, 0)
+print("El impuesto es:", impuesto_a_pagar, "pesos")
