@@ -222,9 +222,9 @@ print("y =", y)
 
 #2.6.1.11 LABORATORIO: Operadores y expresiones
 #https://edube.org/learn/python-essentials-1-esp/laboratorio-operadores-y-expresiones-5
-horas = int(input("Hora de inicio (horas): "))
-minutos = int(input("Minuto de inicio (minutos): "))
-duracion = int(input("Duración del evento (minutos): "))
+horas=int(input("Hora de inicio (horas): "))
+minutos=int(input("Minuto de inicio (minutos): "))
+duracion=int(input("Duración del evento (minutos): "))
 
 # Escribe tu código aqui.
 #Por ejemplo, si el evento comienza a las 12:17 y dura 59 minutos, terminará a las 13:16.
@@ -287,10 +287,10 @@ print(y)
 #3.1.1.9 Tomando decisiones en Python
 # Se leen tres números.
 
-#print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
-numero01 = input('Ingrese el primer numero: ')
-numero02 = input('Ingrese el segundo numero: ')
-numero03 = input('Ingrese el tercer numero: ')
+print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+numero01 = int(input("Ingrese el primer numero: "))
+numero02 = int(input("Ingrese el segundo numero: "))
+numero03 = int(input("Ingrese el tercer numero: "))
 
 largest_number = max(numero01, numero02, numero03)
 # Imprime el resultado.
@@ -316,3 +316,63 @@ else:
     impuesto_a_pagar = 14839.02 + 0.32 * (ingreso - ingreso_limite)
 impuesto_a_pagar = round(impuesto_a_pagar, 0)
 print("El impuesto es:", impuesto_a_pagar, "pesos")
+
+
+#3.1.1.12 LABORATORIO: Fundamentos de la sentencia if-elif-else
+#codigo que tiene que mostrar si un año es bisiesto o no.
+anio = int(input("Introduce un año:"))#
+# Escribe tu código aquí.
+es_bisiesto = False
+"""
+Si el número del año no es divisible entre cuatro, es un año común.
+De lo contrario, si el número del año no es divisible entre 100, es un año bisiesto.
+De lo contrario, si el número del año no es divisible entre 400, es un año común.
+De lo contrario, es un año bisiesto.
+"""
+def es_bisiesto(anio):
+    if (anio % 4 != 0):
+        es_bisiesto = False
+    elif (anio % 100 != 0):
+        es_bisiesto = True
+    elif (anio % 400 != 0):
+        es_bisiesto = False
+    else:
+        es_bisiesto = True
+    return es_bisiesto
+
+if (anio < 1582):
+    respuesta = "No dentro del período del calendario Gregoriano"
+else:
+    es_bisiesto_respuesta = es_bisiesto(anio)
+    if (es_bisiesto_respuesta):
+        respuesta = "Año Bisiesto"
+    else:
+        respuesta = "Año Común"
+print(respuesta)
+
+#3.2.1.2 Bucles en Python | while
+# Un programa que lee una secuencia de números
+# y cuenta cuántos números son pares y cuántos son impares.
+# El programa termina cuando se ingresa un cero.
+
+cantidad_pares = 0
+cantidad_impares = 0
+
+# Lee el primer número.
+numero = int(input("Introduce un número o escribe 0 para detener: "))
+
+# 0 termina la ejecución.
+while numero: #numero != 0
+    # Verificar si el número es impar.
+    if numero % 2: #numero % 2 == 1
+        # Incrementar el contador de números impares odd_numbers.
+        cantidad_impares += 1
+    else:
+        # Incrementar el contador de números pares even_numbers.
+        cantidad_pares += 1
+    # Leer el siguiente número.
+    numero = int(input("Introduce un número o escribe 0 para detener: "))
+
+# Imprimir resultados.
+print("Cuenta de números impares:", cantidad_impares)
+print("Cuenta de números pares:", cantidad_pares)
