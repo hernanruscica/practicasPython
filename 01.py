@@ -376,3 +376,56 @@ while numero: #numero != 0
 # Imprimir resultados.
 print("Cuenta de números impares:", cantidad_impares)
 print("Cuenta de números pares:", cantidad_pares)
+
+
+#3.2.1.3 LABORATORIO: Lo esencial del bucle while - Adivina el número secreto
+numero_secreto = 777
+print(
+"""
++==================================+
+| ¡Bienvenido a mi juego, muggle!  |
+| Introduce un número entero       |
+| y adivina qué número he          |
+| elegido para ti.                 |
+| Entonces,                        |
+| ¿Cuál es el número secreto?      |
++==================================+
+""")
+numeroEnteroElegido = int(input("Ingrese un numero entero"))
+while numeroEnteroElegido != numero_secreto :
+    print("¡Ja, ja! ¡Estás atrapado en mi bucle!")
+    numeroEnteroElegido = int(input("Ingrese un numero entero"))
+print("¡Bien hecho, muggle! Eres libre ahora")
+
+
+
+#3.2.1.5 Bucles en Python | for
+for i in range(3):
+    print("tres primeros: " + str(i))    
+for j in range(4, 9):
+    print("de cuatro a ocho, posicion: " + str(j))
+for k in range(8, 20, 2):
+    print("numeros pares, posicion: " + str(k))
+power = 1
+for expo in range(16):
+    print("2 a la potencia de", expo, "es", power)
+    power *= 2
+
+
+
+#3.2.1.6 LABORATORIO: Fundamentos del bucle for: el conteo
+import time
+
+    # Escribe un bucle for que cuente hasta cinco.
+    # Cuerpo del bucle: imprime el número de iteración del bucle y la palabra "Mississippi".
+    # Cuerpo del bucle - usar: time.sleep (1)
+
+# Escribe una función de impresión con el mensaje final.
+for i in range(1, 6):
+    print(str(i) + " Mississippi")
+    time.sleep(1)
+
+#3.2.1.7 Control de bucles en Python | break y continue
+
+
+
