@@ -523,3 +523,47 @@ for letra in palabra_ingresada_mayusculas:
     else: palabra_sin_vocales = palabra_sin_vocales + letra
 print("Antes   del devorador de vocales: " + palabra_ingresada)
 print("despues del devorador de vocales: " + palabra_sin_vocales)
+
+#3.2.1.12 Bucles while en Python | else
+i = 1
+while i < 5:
+    print(i)
+    i += 1
+else:
+    print("else:", i)
+
+#3.2.1.13 Bucles for en Python | else
+i = 10
+for i in range(5,1):
+    print(i)
+else:
+    print("else:", i)
+
+
+
+#3.2.1.14 LABORATORIO: Fundamentos del bucle while
+
+"""
+Escucha esta historia: Un niño y su padre, un programador de computadoras, juegan con bloques de madera. Están construyendo una pirámide.
+Su pirámide es un poco rara, ya que en realidad es una pared en forma de pirámide, es plana. 
+La pirámide se apila de acuerdo con un principio simple: cada capa inferior contiene un bloque más que la capa superior.
+La figura ilustra la regla utilizada por los constructores:
+Tu tarea es escribir un programa que lea la cantidad de bloques que tienen los constructores, y generar la altura de la pirámide que se puede construir utilizando estos bloques.
+Nota: La altura se mide por el número de capas completas: si los constructores no tienen la cantidad suficiente de bloques y no pueden completar la siguiente capa, 
+terminan su trabajo inmediatamente.
+Prueba tu código con los datos que hemos proporcionado.
+"""
+
+cantidad_bloques_piso_actual = 1
+bloques = int(input("Ingresa el número de bloques: "))
+tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) >= 0 
+
+while tengo_bloques_suficientes: 
+    bloques = bloques - cantidad_bloques_piso_actual
+    cantidad_bloques_piso_actual += 1
+    tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) >= 0
+
+print("La altura de la piramide es: " + str(cantidad_bloques_piso_actual))
+
+
+
