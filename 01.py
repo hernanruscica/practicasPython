@@ -556,14 +556,32 @@ Prueba tu código con los datos que hemos proporcionado.
 
 cantidad_bloques_piso_actual = 1
 bloques = int(input("Ingresa el número de bloques: "))
-tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) >= 0 
+tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) > cantidad_bloques_piso_actual 
+contador_pisos = 1
+if tengo_bloques_suficientes: contador_pisos += 1
 
-while tengo_bloques_suficientes: 
+while tengo_bloques_suficientes:     
     bloques = bloques - cantidad_bloques_piso_actual
     cantidad_bloques_piso_actual += 1
-    tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) >= 0
+    tengo_bloques_suficientes = (bloques - cantidad_bloques_piso_actual) > cantidad_bloques_piso_actual
+    if tengo_bloques_suficientes: contador_pisos += 1
 
-print("La altura de la piramide es: " + str(cantidad_bloques_piso_actual))
+print("La altura de la piramide es: " + str(contador_pisos))
+
+"""
+Datos de prueba:
+Entrada de muestra: 6
+Salida esperada: La altura de la pirámide es: 3
+------------------------------------------------
+Entrada de muestra: 20
+Salida esperada: La altura de la pirámide es: 5
+----------------------------------------------------
+Entrada de muestra: 1000
+Salida esperada: La altura de la pirámide es: 44
+---------------------------------------------------
+Entrada de muestra: 2
+Salida esperada: La altura de la pirámide es: 1
+"""
 
 
 
