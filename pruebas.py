@@ -1,17 +1,11 @@
-#resumen de la seccion
+"""
+Operaciones lógicas y de bits en Python
+diferencias entre estos dos tipos de operaciones de comparacion
+"""
 
-#imprime todos los caracteres antes del @ en una misma linea, 
-# gracias a la variable 'end', porque asi no pone el '/'
-for ch in "john.smith@pythoninstitute.org":
-    if ch == "@":
-        break
-    print(ch, end = "") 
+entero_1 = 15
+entero_2 = 22
+resultado_operacion_logica = entero_1 & entero_2
+print(resultado_operacion_logica)
 
-
-#Crea un programa con un bucle for y una sentenciacontinue. 
-# El programa debe iterar sobre una cadena de dígitos, reemplazar cada 0 con x, e imprimir la cadena modificada en la pantalla.
-for digit in "0165031806510":
-    if digit == "0":
-        print("x", end = "")
-        continue
-    print(digit, end = "")
+#3.3.1.5 Operaciones lógicas y de bits en Python | Desplazamiento de bits
