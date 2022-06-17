@@ -1,11 +1,5 @@
-"""
-Operaciones lógicas y de bits en Python
-diferencias entre estos dos tipos de operaciones de comparacion
-"""
+#probando la funcion integrada sort
 
-entero_1 = 15
-entero_2 = 22
-resultado_operacion_logica = entero_1 & entero_2
-print(resultado_operacion_logica)
-
-#3.3.1.5 Operaciones lógicas y de bits en Python | Desplazamiento de bits
+my_list = [8, 10, 6, 2, 4]
+my_list.sort()
+print(my_list)

@@ -599,3 +599,204 @@ for digit in "0165031806510":
         print("x", end = "")
         continue
     print(digit, end = "")
+
+"""
+Operaciones lógicas y de bits en Python
+diferencias entre estos dos tipos de operaciones de comparacion
+"""
+
+entero_1 = 15
+entero_2 = 22
+resultado_operacion_logica = entero_1 & entero_2
+print(resultado_operacion_logica)
+
+"""
+-----------------------------------------------
+            LISTAS O ARRAYS
+-----------------------------------------------
+"""
+
+#3.4.1.3 Listas - colecciones de datos | Indexación
+
+numbers = [10, 5, 7, 2, 1]
+print("Contenido de la lista original:", numbers)  # Imprimiendo el contenido de la lista original.
+numbers[0] = 111
+print("\nContenido de la lista con cambio:", numbers)  # Imprimiendo contenido de la lista con 111.
+numbers[1] = numbers[4]  # Copiando el valor del quinto elemento al segundo elemento.
+print("Contenido de la lista con intercambio:", numbers)  # Imprimiendo contenido de la lista con intercambio.
+print("\nLongitud de la lista:", len(numbers))  # Imprimiendo la longitud de la lista.
+
+#3.4.1.4 Listas - colecciones de datos | Operaciones en listas
+
+del numbers[1]  # Eliminando el segundo elemento de la lista.
+print("Longitud de la nueva lista:", len(numbers))  # Imprimiendo nueva longitud de la lista.
+print("\nNuevo contenido de la lista:", numbers)  # Imprimiendo el contenido de la lista actual.
+
+#No puedes acceder a un elemento que no existe , no puedes obtener su valor ni asignarle un valor. 
+# Ambas instrucciones causarán ahora errores de tiempo de ejecución: print(numbers[4]) O numbers[4] = 1
+
+#3.4.1.5 Listas - colecciones de datos | Operaciones en listas
+
+#Los valores negativos en los indices de las listas SON validos.
+print("El ultimo elemento de la lista es: ", numbers[-1]) #Con -1 se muestra el ultimo elemento
+print("El AnteUltimo elemento de la lista es: ", numbers[-2]) #con -2 se muestra el alteultimo elemento
+# y asi con todos hasta llegar al 1er elemento, donde se terminan los indices negativos.
+
+
+#3.4.1.6 LABORATORIO: Lo básico de las listas
+
+hat_list = [1, 2, 3, 4, 5]  # Esta es una lista existente de números ocultos en el sombrero.
+# Paso 1: escribe una línea de código que solicite al usuario
+numero_entero = int(input("Ingrese un numero entero para reemplazar en el medio: "))
+
+# reemplazar el número de en medio con un número entero ingresado por el usuario.
+hat_list[2] = numero_entero
+
+# Paso 2: escribe aquí una línea de código que elimine el último elemento de la lista.
+del hat_list[-1]
+
+# Paso 3: escribe aquí una línea de código que imprima la longitud de la lista existente.
+print("La longitud de la lista de sombreros es ",len(hat_list))
+print("La lista es: ", hat_list)
+
+
+
+#3.4.1.8 Listas - colecciones de datos | Métodos de listas
+#Los metodos de las listas: append e insert
+
+numbers = [111, 7, 2, 1]
+print(len(numbers))
+print(numbers)
+
+numbers.append(4)
+
+print(len(numbers))
+print(numbers)
+
+numbers.insert(0, 222)
+print(len(numbers))
+print(numbers)
+
+numbers.insert(1, 333)
+print(len(numbers))
+print(numbers)
+
+#3.4.1.9 Listas - colecciones de datos | Métodos de listas
+
+# Creando mis listas vacías.
+mi_lista = []
+mi_lista_inversa = []  
+
+for i in range(5):
+    #append agrega el nuevo valor al final de la lista, obteniendo [1,2,3,4,5]
+    mi_lista.append(i + 1)
+    #insert agrega el nuevo valor (2do parametro) en la posicion indicada en el primer parametro
+    mi_lista_inversa.insert(0, i + 1)
+print("mi lista original: ", mi_lista)
+print("mi lista inversa : ", mi_lista_inversa)
+
+#3.4.1.10 Listas - colecciones de datos | Listas y bucles
+#formas de recorrer una lista, de forma parecida al forEach de javascript
+total = 0
+longitud_mi_lista = len(mi_lista)
+for i in range(longitud_mi_lista):
+    total += mi_lista[i]
+print("Sumatoria de mi lista original: ", total)
+total = 0
+for i in mi_lista_inversa:
+    total += i
+print("Sumatoria de mi lista inversa : ", total)
+
+#3.4.1.12 Listas - colecciones de datos | Listas y bucles
+#Intercambiando valores de variables y de elementos de listas
+
+mi_lista02 = [8, 4, 10, 12, 11]
+#hago el intercambio sin tener que tener una variable intermedia.
+#variable01, variable02 = variable02, variable01
+mi_lista02[0], mi_lista02[1] = mi_lista02[1], mi_lista02[0]
+mi_lista02[3], mi_lista02[4] = mi_lista02[4], mi_lista02[3]
+print("Mi lista ordenada es : ", mi_lista02)
+
+
+#Abajo otro ejemplo pero para intercambiar el orden de toda una lista...
+mi_lista = [10, 1, 8, 3, 5]
+longitud = len(mi_lista) #1 
+for i in range(longitud // 2): #2 
+    principio_lista = i
+    final_lista = longitud - i - 1
+    mi_lista[principio_lista], mi_lista[final_lista] = mi_lista[final_lista], mi_lista[principio_lista]
+print(mi_lista)
+"""
+#1 Hemos asignado la variable length a la longitud de la lista actual (esto hace que nuestro código sea un poco más claro y más corto).
+
+#2 Hemos preparado el bucle "for" para que se ejecute su cuerpo longitud // 2 veces (esto funciona bien para listas con longitudes pares e impares, 
+porque cuando la lista contiene un número impar de elementos, el del medio permanece intacto).
+
+Hemos intercambiado el elemento i (desde el principio de la lista) por el que tiene un índice igual a (length-i-1) (desde el final de la lista); 
+en nuestro ejemplo, for i igual a 0 a la (length-i-1) da 4; for i igual a 3, da 3: esto es exactamente lo que necesitábamos.
+"""
+
+
+#3.4.1.13 LABORATORIO: Lo básico de las listas - Los Beatles
+# paso 1
+Beatles = []
+print("Paso 1:", Beatles)
+# paso 2
+Beatles.append("John Lennon")
+Beatles.append("Paul McCartney")
+Beatles.append("George Harrison")
+print("Paso 2:", Beatles)
+# paso 3
+otros_integrantes = ["Stu Sutcliffe", "Pete Best"]
+otros_integrantes_longitud = len(otros_integrantes)
+for i in range(otros_integrantes_longitud):
+    nuevo_integrante = input("Ingrese a " + otros_integrantes[i] + " : ")
+    Beatles.append(nuevo_integrante)    
+print("Paso 3:", Beatles)
+# paso 4
+for i in range(otros_integrantes_longitud):
+    del Beatles[-1]
+print("Paso 4:", Beatles)
+# paso 5
+Beatles.insert(0, "Ringo Starr")
+print("Paso 5:", Beatles)
+# probando la longitud de la lista
+print("Los Fav", len(Beatles))
+
+#Las listas pueden ser iteradas mediante el uso del bucle for, por ejemplo:
+my_list = ["blanco", "purpura", "azul", "amarillo", "verde"]
+for color in my_list:
+    print(color)
+
+
+#3.5.1.2 Ordenando listas simples - el ordenamiento de burbuja
+
+#mi_lista = [8, 10, 6, 2, 4]  # lista a ordenar
+#mi_lista = [1, 10, 11, 12, 14]  # lista a ordenar
+mi_lista = [103, 88, 90, 6, 20, 45, 11, 66, 54, 3, 8, 12, 1]
+mi_lista_longitud = len(mi_lista)
+cantidad_comparaciones = mi_lista_longitud - 1
+cantidad_pasadas = 0
+hubo_intercambio = False
+
+print("mi_lista original: ", mi_lista)
+
+while hubo_intercambio or cantidad_pasadas == 0:
+
+    hubo_intercambio = False
+    # necesitamos (5 - 1) comparaciones para recorrer toda la lista
+    for i in range(cantidad_comparaciones):  
+        elem_actual = i
+        elem_siguiente = i + 1
+        # compara elementos adyacentes
+        if mi_lista[elem_actual] > mi_lista[elem_siguiente]:  
+            # Si terminamos aquí, tenemos que intercambiar elementos y poner a hubo_intercambio en 'True'.
+            mi_lista[elem_actual], mi_lista[elem_siguiente] = mi_lista[elem_siguiente], mi_lista[elem_actual] 
+            hubo_intercambio = True        
+    cantidad_pasadas += 1
+    print("mi_lista despues de ", str(cantidad_pasadas), " pasada: ", mi_lista, hubo_intercambio)
+
+#probando la funcion integrada sort
+my_list = [8, 10, 6, 2, 4]
+my_list.sort()
+print(my_list)
