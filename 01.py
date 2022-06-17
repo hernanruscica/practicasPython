@@ -800,3 +800,17 @@ while hubo_intercambio or cantidad_pasadas == 0:
 my_list = [8, 10, 6, 2, 4]
 my_list.sort()
 print(my_list)
+
+#Puntos Clave del capitulo de las listas
+
+#1. Puedes usar el método sort() para ordenar los elementos de una lista, por ejemplo:
+lst = [5, 3, 1, 2, 4]
+print(lst)
+lst.sort()
+print(lst)  # outputs: [1, 2, 3, 4, 5]
+
+#2.También hay un método de lista llamado reverse(), que puedes usar para invertir la lista, por ejemplo:
+lst = [5, 3, 1, 2, 4]
+print(lst)
+lst.reverse()
+print(lst)  # salida: [4, 2, 1, 3, 5]
