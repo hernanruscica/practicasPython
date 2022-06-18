@@ -814,3 +814,55 @@ lst = [5, 3, 1, 2, 4]
 print(lst)
 lst.reverse()
 print(lst)  # salida: [4, 2, 1, 3, 5]
+
+
+#3.6.1.1 Operaciones en listas
+
+#Como python copia una lista (arreglo), cuando hacemos: 
+#creamos una lista con un elemento
+lista01 = [2]
+#creamos una nueva lista con los elementos de la lista01???
+lista02 = lista01
+#cambiamos el unico elemento de la lista01
+lista01[0] = 1
+#mostramos las dos listas
+print("lista01: ", lista01, "\nlista02: ", lista02)
+#sorprendentemente cambiaron las dos listas, lo que nos muestra que python no copio los elementos de lista01 dentro de lista02 en la linea 8.
+#Sino que copio la direccion de memoria de esa lista a la "nueva" lista02, que en realidad es una variable que hace referencia a la lista01
+
+#3.6.1.2 Operaciones en listas - rebanadas
+"""
+permite hacer una copia nueva de una lista, o partes de una lista.
+Ejemplo generico: my_list[start:end] 
+si se omite el start o el end se supone que empieza desde el 1er elemento o el ultimo respectivamente.
+"""
+#creo un lista con 4 elementos
+mi_lista01 = [0, 1, 2, 3]
+#creo una lista nueva y le copio los elementos de la lista01
+mi_lista02 = mi_lista01[:]
+#invierto el orden de la lista01
+mi_lista01.reverse()
+#tambien se puede cortar parte de una lista y copiarla en otra, my_list[start:end] 
+# agarra desde el elemento start hasta el elemento en el indice end-1
+mi_lista03 = mi_lista02[1:4]
+#muestro las tres listas, y funcionan completamente independientes.
+print("mi_lista01: ", mi_lista01, "\nmi_lista02: ", mi_lista02, "\nmi_lista03: ", mi_lista03)
+
+#usando la funcion 'del' en combinacion con [:]
+del mi_lista02[:1]
+print("mi_lista02 cortada: ", mi_lista02)
+#Tambien puedo borrar todos los elementos de la lista, sin borrar la lista
+del mi_lista01[:]
+print("mi_lista01 vaciada: ", mi_lista01)
+
+# 'in', 'not in'. Buscan si existe un valor determinado en una lista, la operacion devuelve un booleano.
+tiene_un_dos = 2 in mi_lista02
+if tiene_un_dos: print(mi_lista02, " --> mi_lista02 tiene un dos") 
+else:  print(mi_lista02, " --> mi_lista02 NO tiene un dos") 
+colores = ["rojo", "amarillo", "blanco"]
+tiene_rojo = "rojo" in colores
+tiene_verde = "verde" in colores
+print(colores)
+print("tiene rojo? ", tiene_rojo)
+print("tiene verde? ", tiene_verde)
+
