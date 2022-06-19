@@ -866,3 +866,58 @@ print(colores)
 print("tiene rojo? ", tiene_rojo)
 print("tiene verde? ", tiene_verde)
 
+
+#3.6.1.7 Listas - más detalles
+#Programa que busca el elemento mas grande de una lista 
+
+mi_lista = [17, 3, 11, 5, 1, 9, 7, 45, 13]
+el_mas_grande = mi_lista[0]
+
+#Tambien podria empezar por el 2do elemento, ya que la 1er comparacion es innecesaria
+# for elemento in mi_lista[1:] 
+for elemento in mi_lista: 
+    if elemento > el_mas_grande:
+        el_mas_grande = elemento
+print("el mas grande de la lista es: ", el_mas_grande)
+
+
+#3.6.1.8 Listas - más detalles
+#Ahora encontremos la ubicación de un elemento dado dentro de una lista:
+
+mi_lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+numero_buscado = 11
+encontrado = False
+mi_lista_longitud = len(mi_lista)
+
+for i in range(mi_lista_longitud):
+    elemento = mi_lista[i]
+    encontrado = elemento == numero_buscado    
+    if encontrado:
+        encontrado_indice = i
+        break
+
+print("mi_lista: ", mi_lista)
+if encontrado:
+    print("Numero ", numero_buscado, " encontrado en la posicion ", encontrado_indice)
+else:
+    print("Numero ", numero_buscado, " NO encontrado")
+
+
+#3.6.1.8 Listas - más detalles
+#jugaste a la loteria, la pregunta es: ¿A cuántos números le has atinado?
+
+numeros_sorteados = [5, 11, 9, 42, 3, 49]
+#numeros_apostados = [3, 7, 11, 42, 34, 49]
+numeros_apostados = [1, 34, 21, 5]
+numeros_acertados = []
+aciertos = 0
+
+for apostado in numeros_apostados:
+    if apostado in numeros_sorteados:
+        aciertos += 1
+        numeros_acertados.append(apostado)
+print(aciertos, " aciertos.")
+if aciertos > 0:
+    print("Acertaste: ", numeros_acertados)
+
+
