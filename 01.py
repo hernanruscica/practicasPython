@@ -1033,3 +1033,70 @@ edificio = 1
 piso = 9
 habitacion = 13
 habitaciones[edificio][piso][habitacion] = True
+
+#Algunos puntos del test del module 3
+"""
+for i in range (1):
+    print("#")
+else:
+    print("#")
+
+#cual es la salida?
+mi_lista = [[0, 1, 2, 3] for i in range(2)]
+print(mi_lista[2][0])
+
+
+#cual es la salida?
+mi_lista = [1, 2, 3]
+mi_lista_2 = []
+for v in mi_lista:
+    mi_lista_2.insert(0, v)
+print(mi_lista_2)
+
+
+#cual es la salida?
+a = 1
+b = 0
+
+#cual es la salida?
+c = a & b #0
+d = a | b #1
+e = a ^ b 
+print(c + d + e)
+
+#cual es la salida?
+mi_lista = [3, 1, -2]
+print(mi_lista[mi_lista[-1]])
+
+#cual es la salida?
+mi_lista = [1, 2, 3]
+for v in range(len(mi_lista)):
+    mi_lista.insert(1, mi_lista[v])
+print(mi_lista)
+
+#cual es la salida?
+mi_lista = [1, 2, 3, 4]
+print(mi_lista[-3:-2])
+
+
+#cual es la salida?
+i = 0
+while i <= 5:
+    i += 1
+    if i % 2 == 0:
+        break
+    print("*")
+
+#cual es la salida?
+z = 10
+y = 0
+x = y < z and z > y or y > z and z < y
+print(x)
+
+#cual es la salida?
+var = 1
+while var < 10:
+    print("#")
+    var = var << 1
+    
+"""
