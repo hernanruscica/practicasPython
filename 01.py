@@ -1015,3 +1015,21 @@ for dia in temperaturas:
             temperatura_mas_alta = temperatura
 print("La temperatura mas alta fue: ", temperatura_mas_alta)
 
+
+#3.7.1.5 Listas en aplicaciones avanzadas
+"""
+Arreglos tridimensionales
+Imagina un hotel. Es un hotel enorme que consta de tres edificios, de 15 pisos cada uno. 
+Hay 20 habitaciones en cada piso. Para esto, necesitas un arreglo que pueda recopilar 
+y procesar información sobre las habitaciones ocupadas/libres.
+"""
+
+habitaciones = [[[False for habitacion in range(20)] for piso in range(15)] for edificio in range(3)]
+
+#Ahora ya puedes reservar una habitación para dos recién casados: en el segundo edificio, en el décimo piso, habitación 14:
+
+#empiezan a contar en 0
+edificio = 1
+piso = 9
+habitacion = 13
+habitaciones[edificio][piso][habitacion] = True
