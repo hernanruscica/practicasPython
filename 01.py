@@ -921,3 +921,97 @@ if aciertos > 0:
     print("Acertaste: ", numeros_acertados)
 
 
+#3.6.1.9 LABORATORIO: Operando con listas - conceptos básicos
+"""
+Escribir un programa que elimine todas las repeticiones de números de la lista. 
+El objetivo es tener una lista en la que todos los números aparezcan no más de una vez.
+"""
+mi_lista = [1, 2, 4, 4, 1, 4, 2, 6, 2, 9]
+
+#copio mi lista a una lista temporal
+lista_temporal = mi_lista[:]
+#vacio la lista, es decir elimino todos los elementos, pero no borro la lista
+del mi_lista[:]
+#recorro todos los elementos en la lista temporal y agrego a mi lista solo los que no fueron ya agregados
+for elemento in lista_temporal:
+    if elemento not in mi_lista:
+        mi_lista.append(elemento)
+
+print("La lista con elementos únicos:")
+print(mi_lista)
+
+
+#3.7.1.1 Listas en aplicaciones avanzadas
+"""
+comprensión de lista. Es la sintaxis especial utilizada por Python para completar o llenar listas masivas.
+Una comprensión de lista es en realidad una lista, pero se creó sobre la marcha durante la ejecución del programa, 
+y no se describe de forma estática.
+"""
+#por ejemplo:
+fila_dinamica = ["Naranjas" for i in range(8)]
+print(fila_dinamica)
+
+#Usando una variable
+potencias_dedos = [2 ** x for x in range(7)]
+print(potencias_dedos)
+impares = [numero for numero in range(10) if numero % 2 != 0]
+print(impares)
+
+
+#3.7.1.2 Listas en aplicaciones avanzadas
+
+#Piezas del juego
+EMPTY = "XXXXXXX"
+PAWN = "PEON"
+ROOK = "TORRE"
+KNIGHT = "CABALLO"
+
+#Elementos del tablero
+tablero = []
+COLUMNAS = 8
+FILAS = 8
+
+"""
+for i in range(8):
+    fila = [EMPTY for j in range(8)]
+    tablero.append(fila)
+"""
+#forma abreviada, funciona igual que el for de arriba.
+tablero = [[EMPTY for i in range(FILAS)] for j in range(COLUMNAS)]
+
+#colocamos piezas en el tablero
+tablero[0][0] = ROOK
+tablero[0][7] = ROOK
+tablero[7][0] = ROOK
+tablero[7][7] = ROOK
+
+
+print(tablero)
+#mostrar_tablero()
+
+#3.7.1.4 Listas en aplicaciones avanzadas 
+#matrices bidimensionales - Ejemplo de temperaturas
+
+temperaturas = [[hora + 0.0 for hora in range(24) ] for dia in range(31)]
+
+
+#sacamos un promedio mensual de la temperatura al mediodia
+"""
+La matriz tiene 31 filas (dias) de 24 columnas (horas)
+recorremos las 31 filas y de cada una de ellas, tomamos el valor de la posicion 11 (12Hs.)
+"""
+hora = 12
+sumatoria_temperaturas = 0
+for dia in temperaturas:
+    sumatoria_temperaturas += dia[hora - 1]
+print("Promedio de temperaturas a las 12 hs es de: ", str(sumatoria_temperaturas / 31))
+
+#La variable day itera en todas las filas de la matriz temps.
+#La variable temp itera a través de todas las mediciones tomadas en un día.
+temperatura_mas_alta = -300
+for dia in temperaturas:
+    for temperatura in dia:
+        if temperatura > temperatura_mas_alta:
+            temperatura_mas_alta = temperatura
+print("La temperatura mas alta fue: ", temperatura_mas_alta)
+
