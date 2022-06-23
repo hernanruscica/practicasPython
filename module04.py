@@ -99,7 +99,7 @@ value = None
 if value is None:
     print("Lo siento, no contienes ningún valor")
 
-#Ahora un ejemplo de una funcion que a veces no tiene que devolver 
+#4.3.1.3 Ahora un ejemplo de una funcion que a veces no tiene que devolver 
 #entonces devuleve None
 
 def funcion_extrania(n):
@@ -108,3 +108,86 @@ def funcion_extrania(n):
 
 print(funcion_extrania(2))
 print(funcion_extrania(1))
+
+
+#4.3.1.4 Regresando el resultado de una función, recibiendo una lista
+#Una función como la siguiente:
+
+def suma_lista(lista):
+    sumador = 0    
+    for elemento in lista:
+        sumador += elemento    
+    return sumador
+#y se invoca así:
+print(suma_lista([5, 4, 3]))
+
+
+#4.3.1.5 Regresando una lista como resultado de una función
+def lista_extrania_divertida(n):
+    listra_extrania = []
+    
+    #inserta siempre en el indice 0
+    for i in range(0, n):
+        listra_extrania.insert(0, i)
+    
+    return listra_extrania
+
+print(lista_extrania_divertida(5))
+
+
+#4.3.1.6 LABORATORIO: Un año bisiesto: escribiendo tus propias funciones
+
+def es_anio_bisiesto(year):
+#devuelve la evaluacion de las condiciones de año bisiesto
+#que el año sea divisible por 4, que no sea divisible por 100 y que sea divisible por 400 
+    return year % 4 == 0 and year % 100 != 0 or year % 400 == 0
+
+#esta parte prueba los resultados de la funcion con los resultados esperados segun los datos de prueba.
+test_data = [1900, 2000, 2016, 1987]
+test_results = [False, True, True, False]
+for i in range(len(test_data)):
+	yr = test_data[i]
+	print(yr,"->",end="")
+	result = es_anio_bisiesto(yr)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Fallido")
+
+
+
+#4.3.1.7 LABORATORIO: ¿Cuántos días?: escribiendo y utilizando tus propias funciones
+
+#funcion del ejercicio anterior
+def es_anio_bisiesto(anio):
+    return anio % 4 == 0 and anio % 100 != 0 or anio % 400 == 0
+
+def dias_en_mes(anio, mes):
+    #cantidad de dias por mes. Indice 0 = enero
+    cantidad_dias_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]    
+    #si el numero de mes no tiene sentido, en el anio pienso que se puede poner negativos y positivos sin un limite.
+    if mes <= 0 or mes > 12:
+        return None    
+    if mes == 2 and es_anio_bisiesto(anio) == True:
+        return 29
+    return cantidad_dias_mes[mes - 1]
+
+
+#pruebas
+test_years = [1900, 2000, 2016, 1987]
+test_months = [2, 2, 1, 11]
+test_results = [28, 29, 31, 30]
+for i in range(len(test_years)):
+	yr = test_years[i]
+	mo = test_months[i]
+	print(yr, mo, "->", end="")
+	result = dias_en_mes(yr, mo)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Fallido")
+
+
+
+
+
