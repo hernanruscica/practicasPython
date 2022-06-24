@@ -174,9 +174,9 @@ def dias_en_mes(anio, mes):
 
 
 #pruebas
-test_years = [1900, 2000, 2016, 1987]
-test_months = [2, 2, 1, 11]
-test_results = [28, 29, 31, 30]
+test_years = [1900, 2000, 2016, 1987, 2000, 1933]
+test_months = [2, 2, 1, 12, 13, 0]
+test_results = [28, 29, 31, 31, None, None]
 for i in range(len(test_years)):
 	yr = test_years[i]
 	mo = test_months[i]
@@ -190,4 +190,78 @@ for i in range(len(test_years)):
 
 
 
+#4.3.1.8 LABORATORIO: Día del año: escribiendo y utilizando tus propias funciones
+#funciones de los ejercicios anteriores
+from datetime import datetime
 
+def es_anio_bisiesto(anio):
+    return anio % 4 == 0 and anio % 100 != 0 or anio % 400 == 0
+
+def dias_en_mes(anio, mes):
+    #cantidad de dias por mes. Indice 0 = enero
+    cantidad_dias_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]    
+    #si el numero de mes no tiene sentido, en el anio pienso que se puede poner negativos y positivos sin un limite.
+    if mes <= 0 or mes > 12:
+        return None    
+    if mes == 2 and es_anio_bisiesto(anio) == True:
+        return 29
+    return cantidad_dias_mes[mes - 1]
+
+
+def dia_del_anio(anio, mes, dia):
+    """
+    if mes < 1 or mes > 12 :
+        return None
+    """    
+    nombres_dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
+    cantidad_dias_mes_actual = dias_en_mes(anio, mes)
+    if cantidad_dias_mes_actual == None :
+        return None
+    
+    if dia < 1 or dia > cantidad_dias_mes_actual :
+        return None
+    
+    #si llega hasta aca, es que los datos estan bien
+    contador_dias = 0
+    mes_actual = 1
+    #sumo los meses completos
+    while mes_actual < mes :
+        print(mes_actual)
+        contador_dias += dias_en_mes(anio, mes_actual)
+        mes_actual += 1
+    #sumo los dias del mes actual
+    contador_dias += dia
+    
+    #muestro el nombre del dia de la semana
+    #faltaria armar el string por si estan fuera del formato aaaa/mm/dd
+    fecha = str(dia) + '/' + str(mes) + '/' +  str(anio)
+    fecha_dt = datetime.strptime(fecha, '%d/%m/%Y')
+    numero_dia_semana = fecha_dt.weekday()
+    nombre_del_dia = nombres_dias[numero_dia_semana]
+    
+    return [contador_dias, nombre_del_dia]
+
+#anio mes dia
+resultado = dia_del_anio(2022, 7, 10)
+print(resultado)
+"""
+resultado = dia_del_anio(1980, 11, 32)
+print(resultado)
+resultado = dia_del_anio(1900, 2, 29)
+print(resultado)
+
+
+#pruebas 
+test_years = [2000]
+test_months = [12]
+test_results = [31]
+for i in range(len(test_years)):
+	yr = test_years[i]
+	mo = test_months[i]
+	print(yr, mo, "->", end="")
+	result = dia_del_anio(yr, mo)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Fallido")
+"""
