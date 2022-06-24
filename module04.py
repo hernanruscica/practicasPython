@@ -245,11 +245,7 @@ def dia_del_anio(anio, mes, dia):
 resultado = dia_del_anio(2022, 7, 10)
 print(resultado)
 """
-resultado = dia_del_anio(1980, 11, 32)
-print(resultado)
-resultado = dia_del_anio(1900, 2, 29)
-print(resultado)
-
+Habria que adaptarlas pruebas para los dos valores que retorna.
 
 #pruebas 
 test_years = [2000]
@@ -265,3 +261,25 @@ for i in range(len(test_years)):
 	else:
 		print("Fallido")
 """
+
+
+#4.3.1.9 LABORATORIO: Números primos: ¿Cómo encontrarlos?
+def es_primo(numero):
+
+# Escribe tu código aquí.
+    if numero == 2 : return False
+    inicio = 2
+    final = numero - 1
+    for elemento in range(inicio, final) :
+        es_divisible = numero % elemento == 0 
+        if es_divisible == True :
+            return False
+        
+    return True
+#Escribe tu código aquí.
+
+
+for i in range(1, 20):
+	if es_primo(i + 1):
+			print(i + 1, end=" ")
+print()
