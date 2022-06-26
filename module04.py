@@ -283,3 +283,48 @@ for i in range(1, 20):
 	if es_primo(i + 1):
 			print(i + 1, end=" ")
 print()
+
+
+"""
+Los Alcances de las variables - SCOPEs
+"""
+
+#4.4.1.1 Una variable declarada dentro de una funcion y la llamo fuera...ERROR
+def scope_test():
+    #Esta x existe, porque se declaro dentro de la funcion y se llama dentro tambien
+    x = 123
+    print(x)
+scope_test()
+#Esta x no existe en este ambito
+#print(x)
+
+
+#4.4.1.2 Una variable declarada fuera de una funcion y llamada dentro
+def my_function():
+    print("¿Conozco a la variable?", var)
+var = 1
+my_function()
+print(var)
+
+#Hacemos un pequenio cambio en la funcion. Las dos variables se llaman igual, pero son distintas.
+def my_function():
+    var = 2
+    print("¿Conozco a la variable?", var)
+var = 1
+my_function()
+print(var)
+
+
+#4.4.1.3 Las variables declaradas con la palabra clave "GLOBAL"
+"""
+1. Se declara "var = 1"
+2. llama a la funcion, dentro de la funcion declara "global var = 2"
+3. Sale de la funcion e imprimi "var" de nuevo, pero esta vez modificada
+"""
+def my_function():
+    global var
+    var = 2
+    print("¿Conozco a aquella variable?", var)
+var = 1
+my_function()
+print(var)
