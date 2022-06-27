@@ -328,3 +328,101 @@ def my_function():
 var = 1
 my_function()
 print(var)
+
+
+#Otro ejemplo, definiendo mi variable global desde afuera de la funcion
+
+#1. defino la variable como global, le asigno un valor y la muestro
+global mi_variable_global
+mi_variable_global = 22
+print(mi_variable_global)
+
+#3. Dentro de la funcion, cambio el valor de la variale global
+#para hacer referencia a ella tengo que volver a poner la palabra reservada "global"
+def my_function():        
+    global mi_variable_global
+    mi_variable_global = 33
+
+#2. llamo a una funcion
+my_function()
+print(mi_variable_global)
+
+
+
+#4.4.1.4 Los Alcances en Python y como interactua con los argumentos
+
+#3. Dentro la funcion modifica el argumento
+def my_function(n):
+    print("Yo recibí", n, " (Dentro de la funcion) ")
+    n += 1
+    print("Ahora tengo", n, " (Dentro de la funcion) ")
+
+#1. defino una variable
+var = 1
+#2. la paso como argumento a un funcion
+my_function(var)
+#4. a pesar de cambiar el argumento dentro de la funcion, la variable sigue siendo la misma.
+print("var = ", var , " (Fuera de la funcion) ")
+
+
+"""
+Si bien, el resultado del ejemplo anterior podria resultar obvio. 
+Vale la pena revisar cómo funciona esto con las listas 
+(¿Recuerdas las peculiaridades de asignar rebanadas de listas en lugar de asignar la lista entera?)
+
+"""
+#2. dentro de la funcion borro el primer elemento del argumento lista pasado
+def mi_funcion(mi_lista_argumento):
+    del mi_lista_argumento[0]
+    print(mi_lista_argumento, " mi lista argumento dentro de la funcion")
+
+#1. mi lista con dos elementos
+mi_lista_2 = [1, 2]
+print(mi_lista_2, " mi lista 2 ANTES y fuera de la funcion")
+
+mi_funcion(mi_lista_2)
+
+#3. el cambio dentro de la funcion, afecta a la lista original...
+print(mi_lista_2, " mi lista 2 fuera de la funcion")
+
+
+
+
+#4.5.1.2 Creando funciones con dos parámetros
+
+#dos funciones para las conversiones
+def pies_pulgadas_a_metros(ft, inch = 0.0):
+    return ft * 0.3048 + inch * 0.0254
+def libras_a_kilos(lb):
+    return lb * 0.45359237
+
+#calcula el indice de masa corporal. valores en kilos y metros
+def imc(peso, altura):
+    #condiciones con la \ hago que la linea continue en el reglon de abajo
+    if altura < 1.0 or altura > 2.5 or \
+    peso < 20 or peso > 200:
+        return None
+    return peso / altura ** 2
+
+def pedir_datos(sistema_medida):
+    datos = []    
+    if sistema_de_medida == 1 :        
+        datos.append(float(input("Ingrese su peso en Kilogramos: ")))
+        datos.append(float(input("Ingrese su altura en metros: ")))
+    if sistema_de_medida == 2 :
+        peso_libras = float(input("Ingrese su peso en Libras: "))
+        altura_pies = float(input("Ingrese su altura en pies y pulgadas\n1ro, los pies: "))
+        altura_pulgadas = float(input("Ingrese su altura en pies y pulgadas\n2do, las pulgadas: "))
+        datos.append(libras_a_kilos(peso_libras))
+        datos.append(pies_pulgadas_a_metros(altura_pies, altura_pulgadas))
+    return datos
+    
+
+#ingreso de datos y pregunta si los datos estan en sistema ingles o sistema metrico?
+sistema_de_medida = int(input("Los datos estan en: \n 1. Sistema metrico.\n2. Sistema ingles.\n"))
+#llamo a la funcion que pide datos
+datos_sistema_metrico = pedir_datos(sistema_de_medida)
+peso = datos_sistema_metrico[0]
+altura = datos_sistema_metrico[1]
+mi_imc = imc(peso, altura)
+print("Su I.M.C. es : ", mi_imc)
