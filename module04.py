@@ -426,3 +426,102 @@ peso = datos_sistema_metrico[0]
 altura = datos_sistema_metrico[1]
 mi_imc = imc(peso, altura)
 print("Su I.M.C. es : ", mi_imc)
+
+
+
+#4.5.1.3 Creando funciones con tres parámetros
+"""
+Teniendo tres medidas de lados, la funcion nos dice si es o no un triangulo
+Sabiendo que la suma arbitraria de dos lados tiene que ser mayor que la longitud del tercer lado.
+"""
+def is_a_triangle(a, b, c):
+    return a + b > c and b + c > a and c + a > b
+
+print(is_a_triangle(1, 1, 1))
+print(is_a_triangle(1, 1, 3))
+
+
+#4.5.1.4 Creando funciones: probando triángulos
+
+def is_a_triangle(a, b, c):
+    return a + b > c and b + c > a and c + a > b
+
+#revisa si tres lados forman un triangulo rectangulo
+def is_a_right_triangle(a, b, c):
+    #si No es un triangulo
+    if not is_a_triangle(a, b, c):
+        return False
+    #busca cual es el lado mas largo
+    if c > a and c > b:
+        return c ** 2 == a ** 2 + b ** 2
+    if a > b and a > c:
+        return a ** 2 == b ** 2 + c ** 2
+
+a = float(input('Ingresa la longitud del primer lado: '))
+b = float(input('Ingresa la longitud del segundo lado: '))
+c = float(input('Ingresa la longitud del tercer lado: '))
+if is_a_triangle(a, b, c):
+    print('Si, si puede ser un triángulo.')
+    es_rectangulo = is_a_right_triangle(a, b, c)
+    if es_rectangulo : print("\nAdemas es Rectangulo")
+else:
+    print('No, no puede ser un triángulo.')
+
+
+
+#4.5.1.5 Sacando el area de un triangulo con la formula de Heron
+
+def is_a_triangle(a, b, c):
+    return a + b > c and b + c > a and c + a > b
+
+def heron(a, b, c):
+    p = (a + b + c) / 2
+    return (p * (p - a) * (p - b) * (p - c)) ** 0.5
+
+def area_of_triangle(a, b, c):
+    if not is_a_triangle(a, b, c):
+        return None
+    return heron(a, b, c)
+
+#Calculo el area de un triangulo rectangulo
+lado01 = 1.
+lado02 = 1.
+hipotenusa = (lado01 ** 2  + lado02 ** 2 ) ** .5
+print(area_of_triangle(lado01,lado02, hipotenusa))
+
+
+#4.5.1.6 Creando funciones: factoriales
+
+def factorial_function(n):
+    if n < 0:
+        return None
+    if n < 2:
+        return 1    
+    product = 1
+    for i in range(2, n + 1):
+        product *= i
+    return product
+
+for n in range(1, 6):  # probando
+    print(n, factorial_function(n))
+
+
+
+#4.5.1.7 Creando funciones: Fibonacci
+
+def fib(n):
+    if n < 1:
+        return None
+    if n < 3:
+        return 1
+
+    elem_1 = elem_2 = 1
+    the_sum = 0
+    for i in range(3, n + 1):
+        the_sum = elem_1 + elem_2
+        elem_1, elem_2 = elem_2, the_sum
+    return the_sum
+
+
+for n in range(1, 10):  # probando
+    print(n, "->", fib(n))
