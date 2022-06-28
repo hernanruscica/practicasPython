@@ -525,3 +525,174 @@ def fib(n):
 
 for n in range(1, 10):  # probando
     print(n, "->", fib(n))
+
+
+
+#4.5.1.8 Creando funciones: recursividad
+"""
+La recursividad es una técnica donde una función se invoca a si misma.
+La serie de Fibonacci es un claro ejemplo de recursividad.
+"""
+def fib(n):
+    if n < 1:
+         return None
+    if n < 3:
+        return 1
+    elem_1 = elem_2 = 1
+    the_sum = 0
+    for i in range(3, n + 1):
+        the_sum = elem_1 + elem_2
+        elem_1, elem_2 = elem_2, the_sum
+    return the_sum
+for n in range(1, 10):
+    print(n, "->", fib(n))
+
+
+# Implementación recursiva de la función factorial.
+
+def factorial(n):
+    if n == 1:    # El caso base (condición de terminación).
+        return 1
+    else:
+        return n * factorial(n - 1)
+print(factorial(4)) # 4 * 3 * 2 * 1 = 24
+
+"""
+Revisar lo de recursivida
+"""
+
+
+#4.6.1.1 y 4.6.1.2 Tuplas y diccionarios
+
+"""
+Tipos de secuencias y mutabilidad
+
+Un tipo de secuencia es un tipo de dato en Python el cual es capaz de almacenar más de un valor (o ninguno si la secuencia esta vacía), 
+los cuales pueden ser secuencialmente (de ahí el nombre) examinados, elemento por elemento.
+
+La segunda noción - la mutabilidad - es una propiedad de cualquier tipo de dato en Python que describe su disponibilidad para poder 
+cambiar libremente durante la ejecución de un programa. Existen dos tipos de datos en Python: mutables e inmutables.
+Los datos mutables pueden ser actualizados libremente en cualquier momento, a esta operación se le denomina "in situ".
+
+tupla. Una tupla es una secuencia inmutable.
+"""
+#tuplas 
+tupla_1 = (1, 2, 3, 4)
+tupla_2 = 4, 'b', 'c', 'd'
+tupla_vacia = ()
+tupla_un_elemento = (True, )
+
+#El quitar las comas no arruinará el programa en el sentido sintáctico, pero serán dos variables, no tuplas.
+tupla_un_elemento_02 = True,
+
+#la forma de acceder a las tuplas es la misma que con las listas.
+print(tupla_2[0])#El 1er elementeo
+print(tupla_2[-1])#El ultimo elemento
+print(tupla_2[1:])#desde el 2do hasta el final
+print(tupla_2[0])#desde el comienzo hasta el ante ultimo
+
+"""
+Todas estas tiran ERROR.:
+    my_tuple.append(10000)
+    del my_tuple[0]
+    my_tuple[1] = -10
+"""
+for elem in tupla_1:
+    print(elem)
+
+
+#4.6.1.3 Tuplas y diccionarios
+"""
+¿Qué más pueden hacer las tuplas?
+
+La función len() acepta tuplas, y regresa el número de elementos contenidos dentro.
+El operador + puede unir tuplas (ya se ha mostrado esto antes).
+El operador * puede multiplicar las tuplas, así como las listas.
+Los operadores in y not in funcionan de la misma manera que en las listas.
+"""
+
+mi_tupla = (10, 20, 30)
+tupla1 = mi_tupla + (40, 50)
+tupla2 = tupla1 * 3
+print("tupla1: ", tupla1, "\ntupla2: ", tupla2)
+numero_buscado = 20
+print("El ", numero_buscado, " está en tupla2 ? ", numero_buscado in tupla2)
+
+
+#4.6.1.4 Tuplas y diccionarios
+"""
+¿Qué es un diccionario?
+El diccionario es otro tipo de estructura de datos de Python. No es una secuencia 
+(pero puede adaptarse fácilmente a un procesamiento secuencial) y además es mutable.
+
+Esto significa que un diccionario es un conjunto de pares de claves y valores.
+
+Un diccionario no es una lista. Una lista contiene un conjunto de valores numerados, mientras que un diccionario almacena pares de valores.
+
+"""
+
+#Diccionarios
+preferencias = {"color" : "Azul", "comida" : "Pastel de papas", "hace_ejercicio" : False, "telefono" : 1132924558}
+
+#dependiendo de la version de python el orden de la lista puede variar. 
+#En Python 3.6x los diccionarios se han convertido en colecciones ordenadas de manera predeterminada. 
+print(preferencias)
+
+#Accediendo a un atributo en particular
+print(preferencias["hace_ejercicio"]) #False
+
+
+
+#4.6.1.5 Tuplas y diccionarios
+dictionary = {"gato" : "chat", "perro" : "chien", "caballo" : "cheval"}
+words = ['gato', 'león', 'caballo', 'chien']
+for word in words:
+    #busca cada una de las word por keys de dictionary
+    if word in dictionary:
+        print(word, "->", dictionary[word])
+    else:
+        print(word, "no está en el diccionario")
+
+
+
+#4.6.1.6 Tuplas y diccionarios - El metodo keys()
+"""
+No, porque un diccionario no es un tipo de dato secuencial - el bucle for no es útil aquí.
+Si, porque hay herramientas simples y muy efectivas que pueden adaptar cualquier diccionario a los 
+requerimientos del bucle for (en otras palabras, se construye un enlace intermedio entre el diccionario 
+y una entidad secuencial temporal).
+keys() = El método retorna o regresa una lista de todas las claves dentro del diccionario. 
+"""
+dictionary = {"gato" : "chat", "perro" : "chien", "caballo" : "cheval"}
+keys_del_diccionario = dictionary.keys()
+#muestra la key y el valor de cada elemento
+for key in keys_del_diccionario:
+    print(key, "->", dictionary[key])    
+
+#Ademas la funcion sorted() sirve para entregar los datos ordenados
+frutas = {"uva" : "grape", "frutilla" : "strawberry", "naranja" : "orange", "manzana" : "apple"}
+keys_de_frutas = frutas.keys()
+for fruta in sorted(keys_de_frutas) :
+    print(fruta, "->", frutas[fruta])
+
+
+
+
+#4.6.1.7 Tuplas y diccionarios - Métodos
+
+diccionario = {"gato" : "chat", "perro" : "chien", "caballo" : "cheval"}
+
+"""items()"""
+#variables temporales para manejar cada par de items
+for espaniol, frances in diccionario.items():
+    print(espaniol, "-->", frances)
+
+"""keys()"""
+#tomo el valor de las 'keys'de cada elemento
+for nombre_elemento in diccionario.keys():
+    print(nombre_elemento)
+
+"""values() """
+#tomo el valor de cada elemento y lo muestro
+for valor_elemento in diccionario.values():
+    print(valor_elemento)
