@@ -696,3 +696,77 @@ for nombre_elemento in diccionario.keys():
 #tomo el valor de cada elemento y lo muestro
 for valor_elemento in diccionario.values():
     print(valor_elemento)
+
+
+
+
+#4.6.1.8 Tuplas y diccionarios
+"""
+¿Cómo utilizar un diccionario? Modificar, agregar y eliminar valores
+"""
+
+#creo un diccionario para las pruebas
+dictionary = {"gato" : "perro", "dog" : "chien", "caballo" : "cheval"}
+
+#Reemplazamos un valor en la clave o key 'gato'
+dictionary['gato'] = 'minou'
+print("cambie el valor de 'gato'\n", dictionary)
+
+#Agregando nuevas claves, a diferencia de una lista, en los diccionarios se pueden agregar nuevas claves
+dictionary['cisne'] = "cigne"
+print("agregue una nueva clave, declarandola directamente\n", dictionary)
+
+#Tambien se puede usar el metodo update() para ingresar una nueva clave
+dictionary.update({"pato": "canard"})
+print("agregue la clave canard con update\n", dictionary)
+
+"""
+Ademas Para eliminar el ultimo elemento de la lista, se puede emplear el método popitem()
+En versiones anteriores de Python, por ejemplo, antes de la 3.6.7, el método popitem() 
+elimina un elemento al azar del diccionario.
+"""
+dictionary.popitem()
+print("Elimine el ultimo par 'clave-valor' con el metodo popitem()\n", dictionary)
+
+
+
+#4.6.1.9 Tuplas y diccionarios trabajando juntos
+"""
+Imaginemos el siguiente problema:
+
+-Necesitas un programa para calcular los promedios de tus alumnos.
+-El programa pide el nombre del alumno seguido de su calificación.
+-Los nombres son ingresados en cualquier orden.
+-El ingresar un nombre vacío finaliza el ingreso de los datos 
+    (nota 1: ingresar una puntuación vacía generará la excepción ValueError, 
+    pero no te preocupes por eso ahora, verás cómo manejar tales casos cuando hablemos de excepciones en el 
+    segundo parte de la serie del curso).
+-Una lista con todos los nombre y el promedio de cada alumno debe ser mostrada al final.
+"""
+school_class = {}
+
+while True:
+    name = input("Ingresa el nombre del estudiante: ")
+    if name == '':
+        break
+
+    score = int(input("Ingresa la calificación del estudiante (0-10): "))
+    if score not in range(0, 11):
+        break
+        
+    if name in school_class:
+        school_class[name] += (score,)
+    else:
+        school_class[name] = (score,)
+        
+for name in sorted(school_class.keys()):
+    adding = 0
+    counter = 0
+    for score in school_class[name]:
+        adding += score
+        counter += 1
+    print(name, ":", adding / counter)
+
+"""
+Los resumenes de las secciones (a partir de esta) los guardo en ISPC\Programador - TSDWAD - 2022\Python
+"""
