@@ -770,3 +770,110 @@ for name in sorted(school_class.keys()):
 """
 Los resumenes de las secciones (a partir de esta) los guardo en ISPC\Programador - TSDWAD - 2022\Python
 """
+
+#4.7.1.2 Excepciones
+#Saber el tipo de datos de una variable
+value = 1
+es_entero = type(value) is int
+print(es_entero)
+
+value = 1.0
+es_entero = type(value) is int
+print(es_entero)
+
+#4.7.1.3 Excepciones
+"""
+La palabra clave reservada try marca el lugar donde intentas hacer algo sin permiso.
+La palabra clave reservada except comienza un lugar donde puedes mostrar tu 
+talento para disculparte o pedir perdón.
+"""
+try:
+	# Es un lugar donde
+	# tu puedes hacer algo 
+    # sin pedir permiso.
+    23 / 0
+except:
+	# Es un espacio dedicado 
+    # exclusivamente para pedir perdón.
+    print("hubo un error")
+
+#4.7.1.5 Excepciones
+"""
+Cómo lidiar con más de una excepción?
+Se ponen los nombres de las excesiones a manejar.
+En esta variante, cada una de las excepciones esperadas tiene su propia 
+forma de manejar el error, pero se debe enfatizarse en que solo una de 
+todas puede interceptar el control; si se ejecuta una, todas las demás 
+permanecen inactivas. 
+
+"""
+try:
+    value = input('Ingresa un número natural: ')
+    print('El recíproco de', value, 'es', 1/int(value))        
+except ValueError:
+    print('No se que hacer con', value)    
+except ZeroDivisionError:
+    print('La división entre cero no está permitida en nuestro Universo.')  
+
+#4.7.1.6 La excepción por defecto y cómo usarla
+"""
+Hemos agregado un tercer except, pero esta vez no tiene un nombre de excepción 
+específico; podemos decir que es anónimo o (lo que está más cerca de su función real) 
+es el por defecto.
+"""
+try:
+    value = input('Ingresa un número natural: ')
+    print('El recíproco de', value, 'es', 1/int(value))        
+except ValueError:
+    print('No se que hacer con', value)    
+except ZeroDivisionError:
+    print('La división entre cero no está permitida en nuestro Universo.')    
+except:
+    print('Ha sucedido algo extraño, ¡lo siento!')
+
+
+#4.7.1.7 Excepciones
+"""
+Analicemos con más detalle algunas excepciones útiles (o más bien, las más comunes) 
+que puedes llegar a experimentar.
+"""
+
+#ZeroDivisionError
+try:
+    #ZeroDivisionError 1 / 0
+    # NameError 2 + d 
+    #TypeError print("cadena" + 2)
+    #AttributeError "rebanada".slice(0, 10)    
+    """
+    ValueError
+    lista = []
+    lista.remove(7)
+    """
+    # print(("trato de escribir print, pero no puedo")
+except ZeroDivisionError:
+    print("ZeroDivisionError: No se puede dividir por cero")
+except NameError:
+    print("NameError: ocurre cuando el intérprete CPython no reconoce un nombre de objeto local o global que se haya proporcionado en el código fuente de Python.")
+except ValueError:
+    print("ValueError: Error en los tipos de datos pasados a una funcion")
+except TypeError:
+    print("TypeError: Esta excepción aparece cuando intentas aplicar un dato cuyo tipo no se puede aceptar en el contexto actual")
+except AttributeError:
+    print("AttributeError: Esta excepción llega, entre otras ocasiones, cuando intentas activar un método que no existe en un elemento con el que se está tratando.")
+except SyntaxError:
+    print("SintaxError: Errores en la sintaxis de nuestro codigo. Es una mala idea manejar este tipo de excepciones en tus programas. Deberías producir código sin errores de sintaxis, en lugar de enmascarar las fallas que has causado.")
+
+
+#4.7.1.9 Excepciones
+"""
+Cuando Python cierra sus ojos... puede haber errores de sintaxis que python no reconoce porque estan en una linea de varias lineas de ejecucion.
+Abajo un ejemplo:
+"""
+temperature = float(input('Ingresa la temperatura actual:'))
+if temperature > 0:
+    print("Por encima de cero")
+elif temperature < 0:
+    prin("Por debajo de cero")
+else:
+    print("Cero")
+#¿Entiendes ahora por qué el pasar por todos los caminos de ejecución es tan vital e inevitable?
