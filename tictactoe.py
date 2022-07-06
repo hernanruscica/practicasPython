@@ -72,23 +72,28 @@ board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 def DisplayBoard(board):
     # La función acepta un parámetro el cual contiene el estado actual del tablero
     # y lo muestra en la consola.
+    
     for i in range(1, 14):
         #dibujo el tablero
+        
         if i == 1 or i == 5 or i == 9 or i == 13:
             print("+-------+-------+-------+")
-        else:
-            print("|       |       |       |")
         
         #lleno el tablero con los datos del array
         if i == 3 :
-            print("    ", board[0][0] , "    ", board[0][1] , "   ", board[0][2])
+            print("|  ", board[0][0], "  |  ", board[0][1], "  |  ", board[0][2], "  |")
+        
+        if i == 2 or i == 4 or i == 6 or i == 8 or i == 10 or i == 12:
+            print("|       |       |       |")
         
         if i == 7 :
-            print("    ", board[1][0] , "    ", board[1][1] , "   ", board[1][2])
+            print("|  ", board[1][0], "  |  ", board[1][1], "  |  ", board[1][2], "  |")
         
-        if i == 10 :
-            print("    ", board[2][0] , "    ", board[2][1] , "   ", board[2][2])
-
+        if i == 11 :
+            print("|  ", board[2][0], "  |  ", board[2][1], "  |  ", board[2][2], "  |")
+        
+    
+        
 DisplayBoard(board)
 
 def EnterMove(board):
