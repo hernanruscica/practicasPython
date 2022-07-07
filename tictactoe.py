@@ -67,7 +67,8 @@ for i in range(10):
 """
 
 
-board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+board = [[1, 2, 3], [4, "X", 6], [7, 8, 9]]
+board_2 = [["X", "X", "X"], ["O", 5, "O"], ["O", "X", 9]]
 
 def DisplayBoard(board):
     # La función acepta un parámetro el cual contiene el estado actual del tablero
@@ -94,22 +95,72 @@ def DisplayBoard(board):
         
     
         
-DisplayBoard(board)
+#DisplayBoard(board)
 
 def EnterMove(board):
     # La función acepta el estado actual del tablero y pregunta al usuario acerca de su movimiento, 
     # verifica la entrada y actualiza el tablero acorde a la decisión del usuario.
-    print(board)
+    movimiento_ingresado = input("Ingrese su movimiento.\n(1 a 9) y debe estar libre: ")
+    print("movimiento ingresado: ", movimiento_ingresado)
+
+#EnterMove(board)
 
 def MakeListOfFreeFields(board):
     # La función examina el tablero y construye una lista de todos los cuadros vacíos.
     # La lista esta compuesta por tuplas, cada tupla es un par de números que indican la fila y columna.
+    lista_vacios = []
+    longitud_filas = 3
+    longitud_columnas = 3
+    for i in range(longitud_filas):
+        for j in range(longitud_columnas):
+            print(board[i][j], end = "")
+            if board[i][j] != "O" and board[i][j] != "X":
+                #print(" casilla vacia")
+                lista_vacios.append((i, j))
+            #else:
+                #print(" casilla ocupada")
+    print(lista_vacios)
     print(board)
+
+#MakeListOfFreeFields(board_2)
 
 def VictoryFor(board, sign):
     # La función analiza el estatus del tablero para verificar si
     # el jugador que utiliza las 'O's o las 'X's ha ganado el juego.
-    print(board, sign)
+    """
+    Condiciones para ser ganador:
+        - Algunas de las lineas horizontales (3 lineas) tienen el mismo signo [0][0] == [0][1] == [0][2] == "X"
+        - Algunas de las lineas verticales (3 lineas) tienen el mismo signo   [0][0] == [1][0] == [2][0]
+        - Algunas de las lineas diagonales (2 lineas) tienen el mismo signo
+
+    combinaciones_ganadoras = [[(0, 0), (0, 1), (0, 2)], 
+                               [(1, 0), (1, 1), (1, 2)], 
+                               [(2, 0), (2, 1), (2, 2)],
+                               [(0, 0), (1, 0), (2, 0)], 
+                               [(0, 1), (1, 1), (2, 1)], 
+                               [(0, 2), (1, 2), (2, 2)], 
+                               [(0, 0), (1, 1), (2, 2)], 
+                               [(0, 2), (1, 1), (2, 0)]]
+    print(combinaciones_ganadoras)
+    
+    board_2 = [[1, "X", "O"], ["O", 5, "O"], ["O", "X", 9]]
+    """
+    
+    for indice_filas in range(3):
+        
+        indice_columnas = 0
+        is_sign = board[indice_filas][indice_columnas] != sign
+        
+        while indice_columnas < 3 and is_sign == True:
+            
+            is_sign = board[indice_filas][indice_columnas] != sign
+            indice_columnas += 1
+            #print(board[indice_filas][indice_columnas], end = "")
+        print("\n")
+    
+    print("Tablero: ", board, "\nBusco  : ", sign)
+
+VictoryFor(board_2, "X")
 
 def DrawMove(board):
     # La función dibuja el movimiento de la máquina y actualiza el tablero.
