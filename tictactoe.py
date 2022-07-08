@@ -63,12 +63,10 @@ Nota: La instrucción from-import provee acceso a la función randrange definida
 from random import randrange
 
 for i in range(10):
-    print(randrange(8))
-"""
+    print(randrange(8))"""
+    
 
 
-board = [[1, 2, 3], [4, "X", 6], [7, 8, 9]]
-board_2 = [["X", "X", "X"], ["O", 5, "O"], ["O", "X", 9]]
 
 def DisplayBoard(board):
     # La función acepta un parámetro el cual contiene el estado actual del tablero
@@ -94,21 +92,29 @@ def DisplayBoard(board):
             print("|  ", board[2][0], "  |  ", board[2][1], "  |  ", board[2][2], "  |")
         
     
-        
-#DisplayBoard(board)
 
-def EnterMove(board):
+def EnterMove(board, sign):
     # La función acepta el estado actual del tablero y pregunta al usuario acerca de su movimiento, 
     # verifica la entrada y actualiza el tablero acorde a la decisión del usuario.
-    movimiento_ingresado = input("Ingrese su movimiento.\n(1 a 9) y debe estar libre: ")
-    print("movimiento ingresado: ", movimiento_ingresado)
+    movimiento_ingresado = int(input("Ingrese su movimiento.\n(1 a 9) y debe estar libre: "))
+    posicion_columna_ingresada = (movimiento_ingresado - 1) % 3
+    posicion_fila_ingresada = (movimiento_ingresado - 1) // 3
+    posicion_tupla_ingresada = (posicion_fila_ingresada, posicion_columna_ingresada)
+    
+    esta_vacio = posicion_tupla_ingresada in lista_vacios
+    print("movimiento ingresado: ", posicion_tupla_ingresada, esta_vacio)
+    
+    if esta_vacio == True :
+        board[posicion_fila_ingresada][posicion_columna_ingresada] = sign
+        print("ingreso la ", sign, " en [", posicion_fila_ingresada, " ][ ", posicion_columna_ingresada, " ]")
+    
+    DisplayBoard(board)    
 
-#EnterMove(board)
 
 def MakeListOfFreeFields(board):
     # La función examina el tablero y construye una lista de todos los cuadros vacíos.
     # La lista esta compuesta por tuplas, cada tupla es un par de números que indican la fila y columna.
-    lista_vacios = []
+    
     longitud_filas = 3
     longitud_columnas = 3
     for i in range(longitud_filas):
@@ -119,10 +125,8 @@ def MakeListOfFreeFields(board):
                 lista_vacios.append((i, j))
             #else:
                 #print(" casilla ocupada")
-    print(lista_vacios)
-    print(board)
-
-#MakeListOfFreeFields(board_2)
+    #print(lista_vacios)
+    #print(board)
 
 def VictoryFor(board, sign):
     # La función analiza el estatus del tablero para verificar si
@@ -132,36 +136,35 @@ def VictoryFor(board, sign):
         - Algunas de las lineas horizontales (3 lineas) tienen el mismo signo [0][0] == [0][1] == [0][2] == "X"
         - Algunas de las lineas verticales (3 lineas) tienen el mismo signo   [0][0] == [1][0] == [2][0]
         - Algunas de las lineas diagonales (2 lineas) tienen el mismo signo
-
-    combinaciones_ganadoras = [[(0, 0), (0, 1), (0, 2)], 
-                               [(1, 0), (1, 1), (1, 2)], 
-                               [(2, 0), (2, 1), (2, 2)],
-                               [(0, 0), (1, 0), (2, 0)], 
-                               [(0, 1), (1, 1), (2, 1)], 
-                               [(0, 2), (1, 2), (2, 2)], 
-                               [(0, 0), (1, 1), (2, 2)], 
-                               [(0, 2), (1, 1), (2, 0)]]
-    print(combinaciones_ganadoras)
-    
-    board_2 = [[1, "X", "O"], ["O", 5, "O"], ["O", "X", 9]]
     """
-    
+    es_ganador = False
     for indice_filas in range(3):
-        
-        indice_columnas = 0
-        is_sign = board[indice_filas][indice_columnas] != sign
-        
-        while indice_columnas < 3 and is_sign == True:
+        if board[indice_filas][0] == board[indice_filas][1] == board[indice_filas][2] == sign :
+            es_ganador = True
+    for indice_columnas in range(3):
+        if board[0][indice_columnas] == board[1][indice_columnas] == board[2][indice_columnas] == sign :
+            es_ganador = True
+    if board[0][0] == board[1][1] == board[2][2] == sign :
+        es_ganador = True
+    if board[0][2] == board[1][1] == board[2][0] == sign :
+        es_ganador = True
             
-            is_sign = board[indice_filas][indice_columnas] != sign
-            indice_columnas += 1
-            #print(board[indice_filas][indice_columnas], end = "")
-        print("\n")
-    
-    print("Tablero: ", board, "\nBusco  : ", sign)
-
-VictoryFor(board_2, "X")
+    print("Tablero: ", board, "\nBusco  : ", es_ganador)
 
 def DrawMove(board):
     # La función dibuja el movimiento de la máquina y actualiza el tablero.
     print(board)
+
+lista_vacios = []
+board = [[1, 2, 3], [4, "X", 6], [7, 8, 9]]
+board_2 = [["X", "O", "X"], ["O", "O", "O"], ["O", "X", "X"]]        
+DisplayBoard(board)
+MakeListOfFreeFields(board)
+EnterMove(board, "X")
+VictoryFor(board, "X")
+#falta DrawMove(board)
+
+
+
+
+
