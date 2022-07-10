@@ -71,6 +71,8 @@ for i in range(10):
 def DisplayBoard(board):
     # La función acepta un parámetro el cual contiene el estado actual del tablero
     # y lo muestra en la consola.
+
+    
     
     for i in range(1, 14):
         #dibujo el tablero
@@ -93,22 +95,28 @@ def DisplayBoard(board):
         
     
 
-def EnterMove(board, sign):
+def EnterMove(board, sign, contador):
     # La función acepta el estado actual del tablero y pregunta al usuario acerca de su movimiento, 
     # verifica la entrada y actualiza el tablero acorde a la decisión del usuario.
-    movimiento_ingresado = int(input("Ingrese su movimiento.\n(1 a 9) y debe estar libre: "))
-    posicion_columna_ingresada = (movimiento_ingresado - 1) % 3
-    posicion_fila_ingresada = (movimiento_ingresado - 1) // 3
-    posicion_tupla_ingresada = (posicion_fila_ingresada, posicion_columna_ingresada)
+    esta_vacio = False
+    while True :
+        print("TURNO : ", contador, " - JUGADOR: ", sign)
+        movimiento_ingresado = int(input("Ingrese su movimiento.\n(1 a 9) y debe estar libre: (Si tiene un numero esta libre)"))
+        posicion_columna_ingresada = (movimiento_ingresado - 1) % 3
+        posicion_fila_ingresada = (movimiento_ingresado - 1) // 3
+        posicion_tupla_ingresada = (posicion_fila_ingresada, posicion_columna_ingresada)
+        
+        esta_vacio = posicion_tupla_ingresada in lista_vacios
+        #print("tablero: ", board)
+        #print("lista vacios: ", lista_vacios)
+        #print("movimiento ingresado: ", posicion_tupla_ingresada, esta_vacio)
+        
+        if esta_vacio == True :
+            break
+    board[posicion_fila_ingresada][posicion_columna_ingresada] = sign
+    #print("ingreso la ", sign, " en [", posicion_fila_ingresada, " ][ ", posicion_columna_ingresada, " ]")
     
-    esta_vacio = posicion_tupla_ingresada in lista_vacios
-    print("movimiento ingresado: ", posicion_tupla_ingresada, esta_vacio)
-    
-    if esta_vacio == True :
-        board[posicion_fila_ingresada][posicion_columna_ingresada] = sign
-        print("ingreso la ", sign, " en [", posicion_fila_ingresada, " ][ ", posicion_columna_ingresada, " ]")
-    
-    DisplayBoard(board)    
+    #DisplayBoard(board)    
 
 
 def MakeListOfFreeFields(board):
@@ -116,15 +124,14 @@ def MakeListOfFreeFields(board):
     # La lista esta compuesta por tuplas, cada tupla es un par de números que indican la fila y columna.
     
     longitud_filas = 3
-    longitud_columnas = 3
+    longitud_columnas = 3    
+    del lista_vacios[:]
     for i in range(longitud_filas):
         for j in range(longitud_columnas):
-            print(board[i][j], end = "")
+            #print(board[i][j], end = "")
             if board[i][j] != "O" and board[i][j] != "X":
                 #print(" casilla vacia")
-                lista_vacios.append((i, j))
-            #else:
-                #print(" casilla ocupada")
+                lista_vacios.append((i, j))                            
     #print(lista_vacios)
     #print(board)
 
@@ -148,20 +155,44 @@ def VictoryFor(board, sign):
         es_ganador = True
     if board[0][2] == board[1][1] == board[2][0] == sign :
         es_ganador = True
-            
-    print("Tablero: ", board, "\nBusco  : ", es_ganador)
+
+    return es_ganador            
+    #print("Tablero: ", board, "\nBusco  : ", es_ganador)
 
 def DrawMove(board):
     # La función dibuja el movimiento de la máquina y actualiza el tablero.
     print(board)
 
 lista_vacios = []
-board = [[1, 2, 3], [4, "X", 6], [7, 8, 9]]
-board_2 = [["X", "O", "X"], ["O", "O", "O"], ["O", "X", "X"]]        
+board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+board_2 = [["X", "O", "X"], ["O", "O", "O"], ["O", "X", "X"]]    
+gano_X = False
+gano_O = False
+contador_jugadas = 0
 DisplayBoard(board)
-MakeListOfFreeFields(board)
-EnterMove(board, "X")
-VictoryFor(board, "X")
+
+while gano_X == False and gano_O == False and contador_jugadas < 9:
+    MakeListOfFreeFields(board)
+    if contador_jugadas % 2 == 0 :
+        EnterMove(board, "X", contador_jugadas)
+        gano_X = VictoryFor(board, "X")
+    else :
+        EnterMove(board, "O", contador_jugadas)
+        gano_O = VictoryFor(board, "O")
+    DisplayBoard(board)
+    contador_jugadas += 1
+mensaje = ""
+if gano_X == True : mensaje = "Gano el jugador X\n"
+if gano_O == True : mensaje = "Gano el jugador O\n"
+if gano_O == False and gano_X == False : mensaje = "Termino en empate\n"
+print(mensaje)
+DisplayBoard(board)    
+
+
+#DisplayBoard(board)
+#MakeListOfFreeFields(board)
+#EnterMove(board, "X")
+#VictoryFor(board, "X")
 #falta DrawMove(board)
 
 
