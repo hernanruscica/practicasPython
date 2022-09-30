@@ -369,3 +369,34 @@ print("Yo sé que no sé nada. Part 2.".upper()) #YO SÉ QUE NO SÉ NADA. PARTE 
 Me quedé en https://edube.org/learn/python-essentials-2-esp/tu-propio-split-1
 2.3.1.18 Tu propio split
 """
+
+#2.3.1.18 Tu propio split
+def mysplit(cadena):
+    
+    separador = " "
+    lista_palabras = []
+    
+    if cadena == "": return lista_palabras
+    
+    indice_comenzar = 0
+    indice_encontrado = cadena.find(separador)
+    while indice_encontrado != -1 :
+        
+        palabra = cadena[indice_comenzar : indice_encontrado]
+        
+        #print("[",palabra,"]")
+        #print(indice_encontrado)    
+        
+        lista_palabras.append(palabra)
+        
+        indice_comenzar = indice_encontrado
+        indice_encontrado = cadena.find(separador, indice_encontrado + 1)
+
+    return lista_palabras
+
+print(mysplit("Ser o no ser, esa es la pregunta"))
+print(mysplit("Ser o no ser,esa es la pregunta"))
+print(mysplit("   "))
+print(mysplit(" abc "))
+print(mysplit(""))
+
