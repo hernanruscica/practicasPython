@@ -365,33 +365,26 @@ hace una copia de la cadena de origen, reemplaza todas las letras minúsculas co
 print("Yo sé que no sé nada. Part 2.".upper()) #YO SÉ QUE NO SÉ NADA. PARTE 2.
 
 
-""""
-Me quedé en https://edube.org/learn/python-essentials-2-esp/tu-propio-split-1
-2.3.1.18 Tu propio split
-"""
-
 #2.3.1.18 Tu propio split
-def mysplit(cadena):
-    
+def mysplit(cadena):    
     separador = " "
-    lista_palabras = []
-    
-    if cadena == "": return lista_palabras
-    
+    lista_palabras = []    
+    if cadena == "": 
+        return lista_palabras
+    else :
+        cadena_longitud = len(cadena)    
     indice_comenzar = 0
     indice_encontrado = cadena.find(separador)
-    while indice_encontrado != -1 :
-        
-        palabra = cadena[indice_comenzar : indice_encontrado]
-        
-        #print("[",palabra,"]")
-        #print(indice_encontrado)    
-        
-        lista_palabras.append(palabra)
-        
+    while indice_encontrado != -1 :        
+        palabra = cadena[indice_comenzar : indice_encontrado].strip()        
+        if palabra != "" :
+            lista_palabras.append(palabra)        
         indice_comenzar = indice_encontrado
-        indice_encontrado = cadena.find(separador, indice_encontrado + 1)
-
+        indice_encontrado = cadena.find(separador, indice_encontrado + 1)        
+        if indice_encontrado == -1 and indice_comenzar < cadena_longitud :
+            palabra = cadena[indice_comenzar : cadena_longitud].strip()
+            if palabra != "" :
+                lista_palabras.append(palabra)     
     return lista_palabras
 
 print(mysplit("Ser o no ser, esa es la pregunta"))
