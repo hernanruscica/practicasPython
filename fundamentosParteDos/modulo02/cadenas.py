@@ -393,3 +393,89 @@ print(mysplit("   "))
 print(mysplit(" abc "))
 print(mysplit(""))
 
+# 2.4.1.1 Comparacion de cadenas
+comparacion1 = 'alfa' == 'alfa'
+comparacion2 = 'alfa' != 'Alfa'
+print(comparacion1, comparacion2)
+#se compara el primer caracter diferente en ambas cadenas
+comparacion1 = 'alfa' < 'alfajor' #'j' es mayor a null (106 ASCii)
+comparacion2 = 'Alfa' < 'alfa' # 'A': (65 ASCii) - 'a' : (97 ASCii)
+comparacion3 = 'alfa' < 'Alfabeto' # es false por el mismo motivo de arriba, no importa la longitud
+print(comparacion1, comparacion2, comparacion3)
+
+
+# 2.4.1.3 Demostración de la función sorted():
+"""
+sorted : Ordena listas que contienen cadenas, crea una nueva lista de cadenas, 
+sin alterar la original. Se llama como 'funcion'
+sort : ordena listas que contienen cadenas, pero modifica la original.
+se la llama como un 'metodo'
+"""
+
+# Demostración de la funcion sorted(arg):
+first_greek = ['omega', 'alpha', 'pi', 'gamma']
+first_greek_2 = sorted(first_greek)
+print(first_greek)
+print(first_greek_2)
+# Demostración del método lista.sort():
+second_greek = ['omega', 'alpha', 'pi', 'gamma']
+print(second_greek)
+second_greek.sort()
+print(second_greek)
+
+
+#2.4.1.4 conversion de numeros a cadenas
+# de numericos a cadenas
+valor_entero = 12
+valor_flotante = 7.8
+cadena1 = str(valor_entero)
+cadena2 = str(valor_flotante)
+print(cadena1 + ' ' + cadena2)
+#de cadenas a numericos. 
+valor_entero = int('1')
+valor_flotante = float('0.5')
+#valor_erroneo = float('1,5') #Tira error, la cadena tiene que tener caracteres validos para la conversion.
+print('la variable contiene: ' + str(valor_entero), type(valor_entero))
+print('la variable contiene: ' + str(valor_flotante), type(valor_flotante))
+
+
+""" 
+2.4.16 LABORATORIO: Un display LED
+
+  # ### ### # # ### ### ### ### ### ### 
+  #   #   # # # #   #     # # # # # # # 
+  # ### ### ### ### ###   # ### ### # # 
+  # #     #   #   # # #   # # #   # # # 
+  # ### ###   # ### ###   # ### ### ###
+  
+"""
+uno    = '  #\n  #\n  #\n  #\n  #\n'
+dos    = '###\n  #\n###\n#  \n###'
+tres   = '###\n  #\n###\n  #\n###'
+cuatro = '# #\n# #\n###\n  #\n  #\n'
+cinco  = '###\n#  \n###\n  #\n###'
+seis   = '###\n#  \n###\n# #\n###'
+siete  = '###\n  #\n  #\n  #\n  #\n'
+ocho   = '###\n# #\n###\n# #\n###'
+nueve  = '###\n# #\n###\n  #\n###'
+cero   = '###\n# #\n# #\n# #\n###'
+numero_a_convertir = 84762
+
+lista_digitos = [
+                '###\n# #\n# #\n# #\n###',
+                '  #\n  #\n  #\n  #\n  #',
+                '###\n  #\n###\n#  \n###',
+                '###\n  #\n###\n  #\n###',
+                '# #\n# #\n###\n  #\n  #',
+                '###\n#  \n###\n  #\n###',
+                '###\n#  \n###\n# #\n###',
+                '###\n  #\n  #\n  #\n  #',
+                '###\n# #\n###\n# #\n###',
+                '###\n# #\n###\n  #\n###'
+    ]
+
+numero_en_cadena = str(numero_a_convertir)
+for caracter in numero_en_cadena :
+    #print(caracter)
+    digito = int(caracter)
+    print(lista_digitos[digito] + "" )
