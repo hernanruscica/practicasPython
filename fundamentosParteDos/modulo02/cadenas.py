@@ -449,16 +449,7 @@ print('la variable contiene: ' + str(valor_flotante), type(valor_flotante))
   # ### ###   # ### ###   # ### ### ###
   
 """
-uno    = '  #\n  #\n  #\n  #\n  #\n'
-dos    = '###\n  #\n###\n#  \n###'
-tres   = '###\n  #\n###\n  #\n###'
-cuatro = '# #\n# #\n###\n  #\n  #\n'
-cinco  = '###\n#  \n###\n  #\n###'
-seis   = '###\n#  \n###\n# #\n###'
-siete  = '###\n  #\n  #\n  #\n  #\n'
-ocho   = '###\n# #\n###\n# #\n###'
-nueve  = '###\n# #\n###\n  #\n###'
-cero   = '###\n# #\n# #\n# #\n###'
+
 numero_a_convertir = 84762
 
 lista_digitos = [
@@ -473,9 +464,113 @@ lista_digitos = [
                 '###\n# #\n###\n# #\n###',
                 '###\n# #\n###\n  #\n###'
     ]
-
 numero_en_cadena = str(numero_a_convertir)
 for caracter in numero_en_cadena :
     #print(caracter)
     digito = int(caracter)
     print(lista_digitos[digito] + "" )
+
+
+#2.5.1.1  Cifrado César. https://en.wikipedia.org/wiki/Caesar_cipher
+"""
+cada letra del mensaje se reemplaza por su consecuente más cercano 
+(A se convierte en B, B se convierte en C, y así sucesivamente). 
+La única excepción es la Z, la cual se convierte en A.
+"""
+text = input("Ingresa tu mensaje: ")
+cipher = ''
+for char in text:
+    if not char.isalpha():
+        continue
+    char = char.upper()
+    code = ord(char) + 1
+    if code > ord('Z'):
+        code = ord('A')
+    cipher += chr(code)
+print(cipher)
+
+#2.5.1.2 Cifrado César - descifrar un mensaje.
+cipher = input('Ingresa tu criptograma: ')
+text = ''
+for char in cipher:
+    if not char.isalpha():
+        continue
+    char = char.upper()
+    code = ord(char) - 1
+    if code < ord('A'):
+        code = ord('Z')
+    text += chr(code)
+print(text)
+
+
+#2.5.1.3 Procesador de Números.
+line = input("Ingresa una línea de números, sepáralos con espacios: ")
+total = 0
+if line != " " :
+    strings = line.split()
+    try:
+        for substr in strings:
+            total += float(substr)
+            print("El total es:", total)
+    except:
+        print(substr, "no es un numero.")
+else :
+    print("La cadena estaba vacia")
+    
+
+
+#2.5.1.4  Validador IBAN.
+"""
+El cuarto programa implementa (en una forma ligeramente simplificada) un algoritmo utilizado por los bancos Europeos 
+para especificar los números de cuenta. El estándar llamado IBAN (Número de cuenta bancaria internacional) 
+proporciona un método simple y bastante confiable para validar los números de cuenta contra errores tipográficos simples 
+que pueden ocurrir durante la reescritura del número, por ejemplo, de documentos en papel, como facturas o facturas en las computadoras.
+"""
+
+iban = input("Ingresa un IBAN, por favor: ")
+iban = iban.replace(' ','')
+if not iban.isalnum():
+    print("Has introducido caracteres no válidos.")
+elif len(iban) < 15:
+    print("El IBAN ingresado es demasiado corto.")
+elif len(iban) > 31:
+    print("El IBAN ingresado es demasiado largo.")
+else:
+    iban = (iban[4:] + iban[0:4]).upper()
+    iban2 = ''
+    for ch in iban:
+        if ch.isdigit():
+            iban2 += ch
+        else:
+            iban2 += str(10 + ord(ch) - ord('A'))
+    iban = int(iban2)
+    if iban % 97 == 1:
+        print("El IBAN ingresado es válido.")
+    else:
+        print("El IBAN ingresado no es válido.")
+
+
+#Resumen de la seccion:
+"""
+1. Las cadenas son herramientas clave en el procesamiento de datos modernos, ya que la mayoría de los datos útiles son en realidad cadenas. 
+Por ejemplo, el uso de un motor de búsqueda web (que parece bastante trivial en estos días) utiliza un procesamiento 
+de cadenas extremadamente complejo, que involucra cantidades inimaginables de datos.
+
+2. El comparar cadenas de forma estricta (como lo hace Python) puede ser muy insatisfactorio cuando se trata de búsquedas avanzadas 
+(por ejemplo, durante consultas extensas a bases de datos). En respuesta a esta demanda, se han creado e implementado una serie de algoritmos 
+de comparación de cadenas difusos. Estos algoritmos pueden encontrar cadenas que no son iguales en el sentido de Python, pero que son similares.
+
+Uno de esos conceptos es la Distancia Hamming, que se utiliza para determinar la similitud de dos cadenas. Si este tema te interesa, 
+puedes encontrar más información al respecto aquí: https://en.wikipedia.org/wiki/Hamming_distance. Otra solución del mismo tipo, 
+pero basada en un supuesto diferente, es la Distancia Levenshtein descrita aquí: https://en.wikipedia.org/wiki/Levenshtein_distance.
+
+3. Otra forma de comparar cadenas es encontrar su similitud acústica, lo que significa un proceso que lleva a determinar si dos cadenas 
+suenan similares (como "echo" y "hecho"). Esa similitud debe establecerse para cada idioma (o incluso dialecto) por separado.
+
+Un algoritmo utilizado para realizar una comparación de este tipo para el idioma Inglés se llama Soundex y se inventó, no lo creerás, 
+en 1918. Puedes encontrar más información al respecto aquí: https://en.wikipedia.org/wiki/Soundex.
+
+4. Debido a la precisión limitada de los datos enteros y flotantes nativos, a veces es razonable almacenar y procesar valores numéricos 
+enormes como cadenas. Esta es la técnica que usa Python cuando se le fuerza a operar con un número entero que consta de una gran cantidad de dígitos.
+
+"""
