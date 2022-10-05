@@ -96,4 +96,22 @@ assert x >= 0.0
 x = math.sqrt(x)
 print(x)
 
-#voy por el 2.8.1.1
+
+#2.8.1.4 Leer enteros de forma segura
+def read_int(prompt, min, max):
+    #
+    # Escribe tu código aquí.
+    pedir_valor = True
+    while pedir_valor :
+        try:
+            valor = int(input(prompt))
+            assert min < valor and valor < max
+            pedir_valor = False
+        except ValueError:
+            print('Error: entrada incorrecta')
+        except AssertionError:
+            print('Error: el valor no está dentro del rango permitido (min..max)')
+    return valor
+    
+v = read_int("Ingresa un numero entre -10 a 10: ", -10, 10)
+print("El número es:", v)
