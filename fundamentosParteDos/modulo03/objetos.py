@@ -146,3 +146,37 @@ for i in range(100):
     stk.pop()
 cantidad_pops = stk.get_counter()
 print(cantidad_pops)
+
+# 3.2.1.15 Colas alias FIFO
+
+#class ColaError:   #Eligir la clase base para la nueva excepción.
+    #  Escribe código aquí.
+    
+
+#cola
+class Queue:
+    def __init__(self):
+        # Escribe código aquí.
+        self.__stack = []
+
+    def put(self, elem):
+        # Escribe código aquí.
+        self.__stack.insert(0, elem)
+
+    def get(self):
+        # Escribe código aquí.
+        ultimo = self.__stack[-1]
+        del self.__stack[-1]
+        return ultimo
+
+cola = Queue()
+cola.put(1)
+cola.put("perro")
+cola.put(False)
+
+try:
+    for i in range(4):
+        print(cola.get())
+except :
+    print("Error de Cola")
+
