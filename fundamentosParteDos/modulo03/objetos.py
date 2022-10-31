@@ -445,7 +445,7 @@ print(obj.__dict__) #{'a': 1, 'integer': 5, 'b': 2, 'i': 4, 'z': 5, 'ireal': 3.5
 ##############################################################################################
 #LAB 3.4.1.12 La clase Timer
 """
-
+https://edube.org/learn/python-essentials-2-esp/la-clase-timer
 """
 class Timer:
     def __init__(self, horas = 0, minutos = 0, segundos = 0 ):
@@ -509,3 +509,320 @@ print(timer)
 timer.prev_second()
 print(timer)
 
+"""
+Me falta los siguientes labs de esta seccion:
+https://edube.org/learn/python-essentials-2-esp/d-iacute-as-de-la-semana
+https://edube.org/learn/python-essentials-2-esp/puntos-en-un-plano
+https://edube.org/learn/python-essentials-2-esp/tri-aacute-ngulo
+"""
+
+########################################################################################
+"""
+ 3.5.1.1 y 3.5.1.2 Fundamentos de POO: Herencia
+ __str__ es un metodo incorporado en todas las clases en python, pero que se puede adaptar
+Existe una observación importante que hacer: cada clase se considera una subclase de sí misma.
+"""
+
+class Star:
+    def __init__(self, name, galaxy):
+        self.name = name
+        self.galaxy = galaxy
+
+    def __str__(self): 
+        return self.name + ' en ' + self.galaxy
+
+sun = Star("Sol", "Vía Láctea")
+print(sun)
+
+
+#3.5.1.4 
+# la funcion issubclass() nos dice si una clase es subclase de otra, true or false.
+class Vehicle:
+    pass
+class LandVehicle(Vehicle):
+    pass
+class TrackedVehicle(LandVehicle):
+    pass
+for cls1 in [Vehicle, LandVehicle, TrackedVehicle]:
+    for cls2 in [Vehicle, LandVehicle, TrackedVehicle]:
+        print(issubclass(cls1, cls2), end="\t")
+    print()
+
+
+#3.5.1.5
+"""
+la funcion isinstance() recibe un objeto y una clase. 
+Nos devuelve true o false, dependiendo si el objeto es una instancia de la clase pasada o no.
+hay que tener en cuenta que un objeto es una instancia de su clase, pero ademas de sus superclases.
+"""
+class Vehicle:
+    pass
+class LandVehicle(Vehicle):
+    pass
+class TrackedVehicle(LandVehicle):
+    pass
+
+my_vehicle = Vehicle()
+my_land_vehicle = LandVehicle()
+my_tracked_vehicle = TrackedVehicle()
+
+for obj in [my_vehicle, my_land_vehicle, my_tracked_vehicle]:
+    for cls in [Vehicle, LandVehicle, TrackedVehicle]:
+        print(isinstance(obj, cls), end="\t")
+    print()
+
+#3.5.1.6 el operador is. 
+"""
+El operador is verifica si dos variables, en este caso (object_one y object_two) se refieren al mismo objeto.
+No olvides que las variables no almacenan los objetos en sí, sino solo los identificadores que apuntan 
+a la memoria interna de Python.
+Asignar un valor de una variable de objeto a otra variable no copia el objeto, sino solo su identificador. 
+Es por ello que un operador como is puede ser muy útil en ciertas circunstancias.
+"""
+class SampleClass:
+    def __init__(self, val):
+        self.val = val
+
+object_1 = SampleClass(0)
+object_2 = SampleClass(2)
+object_3 = object_1
+object_3.val += 1
+
+print(object_1 is object_2) #False
+print(object_2 is object_3) #False
+print(object_3 is object_1) #True
+print(object_1.val, object_2.val, object_3.val) #1 2 1
+
+string_1 = "Mary tenía un "
+string_2 = "Mary tenía un corderito"
+string_1 += "corderito"
+
+print(string_1 == string_2, string_1 is string_2)# True False
+#este ultimo ejemplo, diferencia a == de is, ya que la primera hace referencia al contenido y la segunda a las direcciones de memoria
+
+
+#3.5.1.7
+"""
+Ejemplo de herencia:
+Nota: Como no existe el método __str__() dentro de la clase Sub, la cadena a imprimir se producirá dentro de la clase Super. 
+Esto significa que el método __str__() ha sido heredado por la clase Sub.
+"""
+class Super:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return "Mi nombre es " + self.name + "."
+
+class Sub(Super):
+    def __init__(self, name):
+        Super.__init__(self, name) #Tambien sirve: super().__init__(name)
+
+obj = Sub("Andy")
+print(obj)
+
+
+#3.5.1.9 Probando propiedades: variables de clase.
+class Super:
+    supVar = 1
+
+class Sub(Super):
+    subVar = 2
+
+obj = Sub()
+print(obj.subVar)
+print(obj.supVar)
+
+##################################################################################
+#3.5.1.10 Probando propiedades: variables de instancia.
+class Super:
+    def __init__(self):
+        self.supVar = 11
+class Sub(Super):
+    def __init__(self):
+        super().__init__()
+        self.subVar = 12
+
+obj = Sub()
+print(obj.subVar)
+print(obj.supVar)
+
+
+#####################################################################################
+#3.5.1.11 Herencia Multiple: Ejemplo de  línea de herencia de tres niveles. 
+class Level1:
+    variable_1 = 100
+    def __init__(self):
+        self.var_1 = 101
+    def fun_1(self):
+        return 102
+
+class Level2(Level1):
+    variable_2 = 200
+    def __init__(self):
+        super().__init__()
+        self.var_2 = 201    
+    def fun_2(self):
+        return 202
+
+class Level3(Level2):
+    variable_3 = 300
+    def __init__(self):
+        super().__init__()
+        self.var_3 = 301
+    def fun_3(self):
+        return 302
+
+obj = Level3()
+
+print(obj.variable_1, obj.var_1, obj.fun_1()) #100 101 102
+print(obj.variable_2, obj.var_2, obj.fun_2()) #200 201 202 
+print(obj.variable_3, obj.var_3, obj.fun_3()) #300 301 302
+
+#################################################################################
+#3.5.1.12 overriding (anulación). 
+class SuperA:
+    var_a = 10
+    def fun_a(self):
+        return 11        
+class SuperB:
+    var_b = 20
+    def fun_b(self):
+        return 21
+class Sub(SuperA, SuperB):
+    #Aca abajo estoy sobre escribiendo un atributo y un metodo heredado 
+    var_a = 30
+    def fun_a(self):
+        return 31 
+
+obj = Sub()
+
+print(obj.var_a, obj.fun_a()) #10 11
+print(obj.var_b, obj.fun_b()) #20 21
+
+
+# 3.5.1.14
+"""
+Que pasa cuando se heredan dos super clases en la misma definicion de clase?
+Python busca componentes de objetos en el siguiente orden:
+Dentro del objeto mismo.
+En sus superclases, de abajo hacia arriba.
+Si hay más de una clase en una ruta de herencia, Python las escanea de izquierda a derecha.
+"""
+class Left:
+    var = "L"
+    var_left = "LL"
+    def fun(self):
+        return "Left"
+
+class Right:
+    var = "R"
+    var_right = "RR"
+    def fun(self):
+        return "Right"
+
+class Sub(Left, Right):
+    pass
+
+obj = Sub()
+
+print(obj.var, obj.var_left, obj.var_right, obj.fun())
+#L LL RR Left
+
+
+#3.5.1.15
+"""
+la segunda clase hereda un metodo que llama a otro meodo que se llama igual en ambas clases.
+sin embargo en cada caso llama al metodo que le corresponde por su clase.
+Nota: la situación en la cual la subclase puede modificar el comportamiento de su superclase (como en el ejemplo) se llama poliformismo.
+"""
+class One:
+    def do_it(self):
+        print("do_it de One")
+
+    def doanything(self):
+        self.do_it()
+
+class Two(One):
+    def do_it(self):
+        print("do_it de Two")
+
+one = One()
+two = Two()
+
+one.doanything() #do_it de One
+two.doanything() #do_it from Two
+
+
+#3.5.1.16 Ejemplo de polimorfismo
+import time
+class TrackedVehicle:
+    def control_track(left, stop):
+        pass
+
+    def turn(self, left):
+        self.control_track(left, True)
+        time.sleep(0.25)
+        self.control_track(left, False)
+
+
+class WheeledVehicle:
+    def turn_front_wheels(left, on):
+        pass
+
+    def turn(self, left):
+        self.turn_front_wheels(left, True)
+        time.sleep(0.25)
+        self.turn_front_wheels(left, False)
+
+
+#3.5.1.17 haciendo una super clase para los vehiculos
+import time
+class Vehicle:
+    #lo de abajo es una definicion abstracta, que se implementa en la sub clase
+    def change_direction(left, on):
+        pass
+
+    def turn(self,left):
+        self.change_direction(left, True)
+        time.sleep(0.25)
+        self.change_direction(left, False)
+
+class TrackedVehicle(Vehicle):
+    def control_track(left, stop):
+        pass
+    def change_direction(self, left, on):
+        self.control_track(left, on)
+
+class WheeledVehicle(Vehicle):
+    def turn_front_wheels(left, on):
+        pass
+    def change_direction(self, left, on):
+        self.turn_front_wheels(left, on)
+
+
+#3.5.1.18 Composicion de jerarquias de clases.
+import time
+class Tracks:
+    def change_direction(self, left, on):
+        print("pistas: ", left, on)
+
+class Wheels:
+    def change_direction(self, left, on):
+        print("ruedas: ", left, on)
+
+class Vehicle:
+    def __init__(self, controller):
+        self.controller = controller
+
+    def turn(self, left):
+        self.controller.change_direction(left, True)
+        time.sleep(0.25)
+        self.controller.change_direction(left, False)
+
+#como argumento paso la clase correspondiente del controlador para el vehiculo
+wheeled = Vehicle(Wheels())
+tracked = Vehicle(Tracks())
+
+wheeled.turn(True)
+tracked.turn(False)
