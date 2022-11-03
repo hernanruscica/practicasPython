@@ -1,1 +1,4 @@
 Este es el contenido de un archivo de texto.
+mas contenido de linea 
+y otra linea mas para ver ...
+y ahora el ultimo enter
